@@ -1,3 +1,4 @@
+export const dynamic = "force-static";
 const styles = {
   container: { maxWidth: 1100, margin: "0 auto", padding: "0 20px" },
   nav: {
@@ -319,7 +320,7 @@ export default function Page() {
 
       <footer style={styles.footer}>
         <div style={styles.container}>
-          © {new Date().getFullYear()} IC-SQITS. All rights reserved. • San Antonio, TX • Dec 10–11, 2026
+         © 2026 IC-SQITS. All rights reserved. • San Antonio, TX • Dec 10–11, 2026
         </div>
       </footer>
     </div>
