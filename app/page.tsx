@@ -277,8 +277,9 @@ export default function Page() {
               <p style={styles.small}>
                 Suggested categories: Regular / Student / Industry / Author (if needed).
               </p>
-              <a style={styles.btn} href="#" onClick={(e) => e.preventDefault()}>
-                Registration Link (Add URL)
+              <a style={styles.btn} href="#contact">
+                Registration Link (Coming Soon)
+                </a>
               </a>
             </div>
           </Col>
