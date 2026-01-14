@@ -1,4 +1,4 @@
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 const styles = {
   container: { maxWidth: 1100, margin: "0 auto", padding: "0 20px" },
   nav: {
