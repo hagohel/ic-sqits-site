@@ -1,8 +1,11 @@
+import React from "react";
+
 export const dynamic = "force-dynamic";
-const styles = {
+
+const styles: Record<string, React.CSSProperties> = {
   container: { maxWidth: 1100, margin: "0 auto", padding: "0 20px" },
   nav: {
-    position: "sticky" as const,
+    position: "sticky",
     top: 0,
     zIndex: 50,
     backdropFilter: "blur(10px)",
@@ -11,10 +14,11 @@ const styles = {
   },
   navInner: { display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 0" },
   brand: { fontWeight: 800, letterSpacing: 0.2 },
-  navLinks: { display: "flex", gap: 14, flexWrap: "wrap" as const, justifyContent: "flex-end" as const },
+  navLinks: { display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "flex-end" },
   a: { color: "#111", textDecoration: "none", fontWeight: 600, fontSize: 14 },
+
   hero: { padding: "56px 0 28px 0" },
-  pillRow: { display: "flex", gap: 8, flexWrap: "wrap" as const, marginTop: 14 },
+  pillRow: { display: "flex", gap: 8, flexWrap: "wrap", marginTop: 14 },
   pill: {
     fontSize: 12,
     fontWeight: 700,
@@ -23,6 +27,7 @@ const styles = {
     border: "1px solid #e6e6e6",
     background: "#fafafa",
   },
+
   grid: { display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: 18 },
   card: {
     border: "1px solid #eee",
@@ -31,12 +36,14 @@ const styles = {
     background: "#fff",
     boxShadow: "0 1px 0 rgba(0,0,0,0.03)",
   },
+
   section: { padding: "34px 0" },
   h1: { fontSize: 38, margin: "0 0 10px 0", lineHeight: 1.1 },
   h2: { fontSize: 22, margin: "0 0 14px 0" },
   p: { margin: "10px 0", color: "#333", lineHeight: 1.6 },
   small: { color: "#555", lineHeight: 1.5, margin: "8px 0" },
-  btnRow: { display: "flex", gap: 10, flexWrap: "wrap" as const, marginTop: 18 },
+
+  btnRow: { display: "flex", gap: 10, flexWrap: "wrap", marginTop: 18 },
   btn: {
     display: "inline-block",
     padding: "10px 14px",
@@ -59,6 +66,7 @@ const styles = {
     fontWeight: 700,
     fontSize: 14,
   },
+
   footer: { padding: "26px 0 40px 0", borderTop: "1px solid #eee", color: "#666", fontSize: 13 },
   ul: { margin: "10px 0 0 18px", color: "#333", lineHeight: 1.7 },
   kbd: {
@@ -71,19 +79,19 @@ const styles = {
   },
 };
 
-function Section({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
+function Section(props: { id: string; title: string; children: React.ReactNode }) {
   return (
-    <section id={id} style={styles.section}>
+    <section id={props.id} style={styles.section}>
       <div style={styles.container}>
-        <h2 style={styles.h2}>{title}</h2>
-        {children}
+        <h2 style={styles.h2}>{props.title}</h2>
+        {props.children}
       </div>
     </section>
   );
 }
 
-function Col({ span, children }: { span: number; children: React.ReactNode }) {
-  return <div style={{ gridColumn: `span ${span}` }}>{children}</div>;
+function Col(props: { span: number; children: React.ReactNode }) {
+  return <div style={{ gridColumn: `span ${props.span}` }}>{props.children}</div>;
 }
 
 export default function Page() {
@@ -103,7 +111,6 @@ export default function Page() {
         </div>
       </header>
 
-      {/* HOME */}
       <section id="home" style={styles.hero}>
         <div style={styles.container}>
           <div style={styles.grid}>
@@ -111,8 +118,7 @@ export default function Page() {
               <h1 style={styles.h1}>International Conference on Secure Quantum Intelligence and Trusted Systems</h1>
               <p style={styles.p}>
                 <b>IC-SQITS 2026</b> brings together researchers and practitioners advancing{" "}
-                <b>post-quantum security</b>, <b>secure AI</b>, and <b>trusted systems</b> for the next generation of
-                digital defense.
+                <b>post-quantum security</b>, <b>secure AI</b>, and <b>trusted systems</b>.
               </p>
 
               <div style={styles.pillRow}>
@@ -163,7 +169,6 @@ export default function Page() {
         </div>
       </section>
 
-      {/* TPC */}
       <Section id="tpc" title="Technical Program Committee (TPC)">
         <div style={styles.grid}>
           <Col span={6}>
@@ -174,63 +179,44 @@ export default function Page() {
                 <br />
                 <b>Dr. Yun Wan</b> — University of Houston–Downtown (USA)
               </p>
-              <p style={styles.small}>
-                Review model: <b>double-blind</b>, minimum <b>3 reviewers per paper</b>.
-              </p>
+              <p style={styles.small}>Review model: <b>double-blind</b>, minimum <b>3 reviewers per paper</b>.</p>
             </div>
           </Col>
 
           <Col span={6}>
             <div style={styles.card}>
               <h3 style={{ margin: 0 }}>TPC Members</h3>
-              <p style={styles.small}>
-                Add your international committee here (name, affiliation, country). If you want, I can generate a
-                strong starting list aligned with PQC, QKD, secure AI, and trusted systems.
-              </p>
+              <p style={styles.small}>Add names, affiliations, and countries here.</p>
               <ul style={styles.ul}>
                 <li>[Name], [Affiliation], [Country]</li>
                 <li>[Name], [Affiliation], [Country]</li>
                 <li>[Name], [Affiliation], [Country]</li>
-                <li>[Add more…]</li>
               </ul>
             </div>
           </Col>
         </div>
       </Section>
 
-      {/* KEYNOTE */}
       <Section id="keynote" title="Keynote Speakers">
-        <div style={styles.grid}>
-          <Col span={12}>
-            <div style={styles.card}>
-              <p style={styles.small}>
-                The following are invited/targeted keynote speakers (academic + industry). Replace or mark “Confirmed”
-                once finalized.
-              </p>
-              <ul style={styles.ul}>
-                <li>Prof. Arthur James Swart — Central University of Technology (South Africa)</li>
-                <li>Dr. Raul Villamarin Rodriguez — Woxsen University / UNESCO AI Expert</li>
-                <li>Dr. Jagdish Chandra Patni — Apex Institute of Technology (India)</li>
-                <li>Dr. Aparna Aravelli — North Carolina A&amp;T State University (USA)</li>
-                <li>Ts. Dr. Mohammad Kamrul Hasan — Universiti Kebangsaan Malaysia (Malaysia)</li>
-                <li>Jurga Zilinskiene MBE — CEO, Guildhawk (Industry)</li>
-              </ul>
-              <p style={styles.small}>
-                Want headshots + short bios on this page? I can generate a neat layout if you share preferred speakers.
-              </p>
-            </div>
-          </Col>
+        <div style={styles.card}>
+          <ul style={styles.ul}>
+            <li>Prof. Arthur James Swart — Central University of Technology (South Africa)</li>
+            <li>Dr. Raul Villamarin Rodriguez — Woxsen University / UNESCO AI Expert</li>
+            <li>Dr. Jagdish Chandra Patni — Apex Institute of Technology (India)</li>
+            <li>Dr. Aparna Aravelli — North Carolina A&amp;T State University (USA)</li>
+            <li>Ts. Dr. Mohammad Kamrul Hasan — Universiti Kebangsaan Malaysia (Malaysia)</li>
+            <li>Jurga Zilinskiene MBE — CEO, Guildhawk (Industry)</li>
+          </ul>
         </div>
       </Section>
 
-      {/* CFP */}
       <Section id="cfp" title="Call for Papers (CFP)">
         <div style={styles.grid}>
           <Col span={7}>
             <div style={styles.card}>
               <p style={styles.p}>
-                IC-SQITS 2026 invites <b>original, unpublished</b> research contributions at the intersection of quantum
-                computing, AI, and trusted digital systems.
+                IC-SQITS 2026 invites <b>original, unpublished</b> research at the intersection of quantum computing, AI,
+                and trusted digital systems.
               </p>
               <h3 style={{ margin: "14px 0 8px 0" }}>Topics include (not limited to)</h3>
               <ul style={styles.ul}>
@@ -248,39 +234,22 @@ export default function Page() {
             <div style={styles.card}>
               <h3 style={{ margin: 0 }}>Submission Types</h3>
               <ul style={styles.ul}>
-                <li><b>Full papers</b> (12–15+ pages)</li>
-                <li><b>Short papers</b> (6–11 pages)</li>
+                <li><b>Full papers</b></li>
+                <li><b>Short papers</b></li>
               </ul>
-              <p style={styles.small}>
-                Formatting: Springer LNCS/CCIS templates. Double-blind review, 3 reviewers minimum.
-              </p>
-
-              <h3 style={{ margin: "14px 0 6px 0" }}>Awards</h3>
-              <ul style={styles.ul}>
-                <li>Best Paper Award</li>
-                <li>Best Student Paper Award</li>
-              </ul>
+              <p style={styles.small}>Formatting: Springer LNCS/CCIS templates. Double-blind review.</p>
             </div>
           </Col>
         </div>
       </Section>
 
-      {/* REGISTRATION */}
       <Section id="registration" title="Registration">
         <div style={styles.grid}>
           <Col span={6}>
             <div style={styles.card}>
-              <h3 style={{ margin: 0 }}>Registration Opens</h3>
-              <p style={styles.small}>
-                Add your registration link here once your form/payment page is ready.
-              </p>
-              <p style={styles.small}>
-                Suggested categories: Regular / Student / Industry / Author (if needed).
-              </p>
-              <a style={styles.btn} href="#contact">
-                Registration Link (Coming Soon)
-                </a>
-              </a>
+              <h3 style={{ margin: 0 }}>Registration</h3>
+              <p style={styles.small}>Add your registration link once ready.</p>
+              <a style={styles.btn} href="#contact">Registration (Coming Soon)</a>
             </div>
           </Col>
 
@@ -288,40 +257,25 @@ export default function Page() {
             <div style={styles.card}>
               <h3 style={{ margin: 0 }}>Venue</h3>
               <p style={styles.small}>
-                Planned venue: <b>UTSA Downtown Campus, San Antonio, TX</b> (tentative).  
-                Alternative: nearby conference hotel (TBD).
-              </p>
-              <p style={styles.small}>
-                Add travel, parking, and hotel blocks once confirmed.
+                Planned venue: <b>UTSA Downtown Campus, San Antonio, TX</b> (tentative). Alternative: nearby conference hotel (TBD).
               </p>
             </div>
           </Col>
         </div>
       </Section>
 
-      {/* CONTACT */}
       <Section id="contact" title="Contact">
-        <div style={styles.grid}>
-          <Col span={12}>
-            <div style={styles.card}>
-              <p style={styles.p}>
-                For sponsorships, submissions, and general inquiries:
-              </p>
-              <ul style={styles.ul}>
-                <li><b>General Chair:</b> [Your Name] — [your-email@domain.com]</li>
-                <li><b>Program Chairs:</b> Dr. Hardik Gohel; Dr. Yun Wan</li>
-              </ul>
-              <p style={styles.small}>
-                Tip: once you have a dedicated conference email (e.g., <b>icsqits2026@domain.com</b>), replace the placeholder.
-              </p>
-            </div>
-          </Col>
+        <div style={styles.card}>
+          <ul style={styles.ul}>
+            <li><b>General Chair:</b> [Your Name] — [your-email@domain.com]</li>
+            <li><b>Program Chairs:</b> Dr. Hardik Gohel; Dr. Yun Wan</li>
+          </ul>
         </div>
       </Section>
 
       <footer style={styles.footer}>
         <div style={styles.container}>
-         © 2026 IC-SQITS. All rights reserved. • San Antonio, TX • Dec 10–11, 2026
+          © 2026 IC-SQITS. All rights reserved. • San Antonio, TX • Dec 10–11, 2026
         </div>
       </footer>
     </div>
