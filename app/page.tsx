@@ -31,7 +31,7 @@ export default function Page() {
       venue: "University of Texas at San Antonio (UTSA) – Downtown Campus",
       address: "501 W César E Chávez Blvd, San Antonio, TX 78207",
       theme:
-        "IC-SQITS 2026 is a premier interdisciplinary platform at the convergence of quantum computing, AI-driven defense, and systemic trust.",
+        "IC-SQITS 2026 is a premier interdisciplinary platform at the convergence of quantum computing, AI-driven defense, and systemic trust. It brings together researchers, industry leaders, and policy makers to address the security challenges and opportunities created by the post-quantum and AI era. The conference focuses on building resilient, trustworthy, and future-proof digital infrastructures that can withstand emerging quantum and AI-enabled threats. By integrating advances in cryptography, artificial intelligence, and trusted systems engineering, IC-SQITS aims to shape the next generation of secure, intelligent technologies for critical applications worldwide.",
       ctas: {
         cfp: "#cfp",
         submission: "#submission",
@@ -886,7 +886,7 @@ export default function Page() {
 
                 <div className="kpiGrid" aria-label="Conference facts">
                   <div className="kpi">
-                    <p className="kpiVal">CCIS</p>
+                    <p className="kpiVal">Springer Proceedings</p>
                     <p className="kpiLabel">Proceedings planned with Springer CCIS.</p>
                   </div>
                   <div className="kpi">
@@ -1278,6 +1278,7 @@ export default function Page() {
     </div>
   );
 }
+
 
 
 
