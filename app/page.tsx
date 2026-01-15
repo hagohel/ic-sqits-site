@@ -83,31 +83,31 @@ export default function Page() {
   const organizers = useMemo(
     () => ({
       generalChairs: [
-        "Dr. Hardik Gohel — Texas A&M University–Victoria (USA)",
-        "Dr. Usharani Hareesh Govindarajan — Shanghai Jiao Tong University (China)",
+        "Dr. Hardik Gohel — Texas A&M University–Victoria United States",
+        "Dr. Usharani Hareesh Govindarajan — Shanghai Jiao Tong University China",
       ],
       programChairs: [
-        "Dr. Himanshu Upadhyay — Florida International University (USA)",
-        "Dr. Shekhar Bhansali — Vanderbilt University (USA)",
-        "Dr. Suresh Kumar Peddoju — University of Houston (USA)",
+        "Dr. Himanshu Upadhyay — Florida International University United States",
+        "Dr. Shekhar Bhansali — Vanderbilt University United States",
+        "Dr. Suresh Kumar Peddoju — University of Houston United States",
       ],
       tpc: [
-        "Dr. Weiwei Jiang — Beijing University of Posts and Telecommunications (China)",
-        "Dr. Aparna Aravelli — North Carolina A&T State University (USA)",
-        "Abdul Razaque — Ohio Northern University (USA)",
-        "Kotsyuba Igor Yuryevich — ITMO University (Russia)",
-        "Naveen Chilamkurti — La Trobe University (Australia)",
-        "Thomas Newe — University of Limerick (Ireland)",
+        "Dr. Weiwei Jiang — Beijing University of Posts and Telecommunications China",
+        "Dr. Aparna Aravelli — North Carolina A&T State University United States",
+        "Abdul Razaque — Ohio Northern University United States",
+        "Kotsyuba Igor Yuryevich — ITMO University Russia",
+        "Naveen Chilamkurti — La Trobe University Australia",
+        "Thomas Newe — University of Limerick Ireland",
         "Bhagwan Das, Torrens University Australia, Melbourne, Victoria, Australia",
         "Wan Abu Bakar Aezwani, University of Sultan Zainal Abdin, Malaysia",
         "Laura Aldasheva, Astana IT University, Astana, Kazakhstan",
         "Dr. Nikhil Bhalla, Ulster University, UK",
         "Dr. Tarek R. Besold Sony Inc., Spain",
-        "Dr. Ajeet Kaushik, Florida Polytech, (USA)",
+        "Dr. Ajeet Kaushik, Florida Polytech, United States",
         "Dr. Gagan Narang, Università Politecnica delle Marche, Italy",
         "Dr. Chinmay Chakraborty, Birla Institute of Technology, India",
-        "Dr. Siddhant Sharma, Boston Univesity, (USA)",
-        "Dr. Yu Zhiwen, Professor at South China University of Technology",
+        "Dr. Siddhant Sharma, Boston Univesity, United States",
+        "Dr. Yu Zhiwen, Professor at South China University of Technology, China",
         
       ],
     }),
@@ -804,7 +804,7 @@ export default function Page() {
                   </span>
                   <span className="badge">
                     <span className="badgeDot" />
-                    San Antonio, Texas (USA)
+                    San Antonio, Texas United States
                   </span>
                 </div> */}
 
@@ -1288,6 +1288,7 @@ export default function Page() {
     </div>
   );
 }
+
 
 
 
