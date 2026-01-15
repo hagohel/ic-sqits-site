@@ -26,7 +26,7 @@ export default function Page() {
     () => ({
       acronym: "IC-SQITS 2026",
       fullName: "International Conference on Secure Quantum Intelligence and Trusted Systems",
-      proceedings: "Conference Proceedings with Springer Nature (Planned)",
+      {/*proceedings: "Conference Proceedings with Springer Nature (Planned)",*/}
       dates: "10–11 December 2026",
       venue: "University of Texas at San Antonio (UTSA) – Downtown Campus",
       address: "501 W César E Chávez Blvd, San Antonio, TX 78207",
@@ -98,7 +98,17 @@ export default function Page() {
         "Kotsyuba Igor Yuryevich — ITMO University (Russia)",
         "Naveen Chilamkurti — La Trobe University (Australia)",
         "Thomas Newe — University of Limerick (Ireland)",
-        "Prof. Chia-Ming Yang (CGU) — Chang Gung University (Taiwan)",
+        "Bhagwan Das, Torrens University Australia, Melbourne, Victoria, Australia",
+        "Wan Abu Bakar Aezwani, University of Sultan Zainal Abdin, Malaysia",
+        "Laura Aldasheva, Astana IT University, Astana, Kazakhstan",
+        "Dr. Nikhil Bhalla, Ulster University, UK",
+        "Dr. Tarek R. Besold Sony Inc., Spain",
+        "Dr. Ajeet Kaushik, Florida Polytech, (USA),
+        "Dr. Gagan Narang, Università Politecnica delle Marche, Italy",
+        "Dr. Chinmay Chakraborty, Birla Institute of Technology, India",
+        "Dr. Siddhant Sharma, Boston Univesity, (USA)",
+        "Dr. Yu Zhiwen, Professor at South China University of Technology",
+        
       ],
     }),
     []
@@ -134,7 +144,7 @@ export default function Page() {
       {
         title: "Quality bar for proceedings",
         body:
-          "Accepted papers must meet Springer CCIS formatting and quality requirements; final camera-ready versions are due Nov 10, 2026.",
+          "Accepted papers must meet given formatting and quality requirements; final camera-ready versions are due Nov 10, 2026.",
       },
     ],
     []
@@ -886,8 +896,8 @@ export default function Page() {
 
                 <div className="kpiGrid" aria-label="Conference facts">
                   <div className="kpi">
-                    <p className="kpiVal">Springer Proceedings</p>
-                    <p className="kpiLabel">Proceedings planned with Springer CCIS.</p>
+                    <p className="kpiVal"> Proceedings</p>
+                    <p className="kpiLabel">Proceedings in planning stage</p>
                   </div>
                   <div className="kpi">
                     <p className="kpiVal">3+</p>
@@ -973,7 +983,7 @@ export default function Page() {
             <div>
               <h2 className="h2">Call for Papers (CFP)</h2>
               <div className="subline">
-                Proceedings: <strong>{meta.proceedings}</strong>. Please follow CCIS formatting requirements and anonymization rules.
+                Proceedings: <strong>{meta.proceedings}</strong>. Please follow given formatting requirements and anonymization rules.
               </div>
             </div>
           </div>
@@ -1026,7 +1036,7 @@ export default function Page() {
             <div>
               <h2 className="h2">Submission</h2>
               <div className="subline">
-                Submissions will be handled via the <strong>Meteor</strong> tool with Springer. Details coming soon.
+                Submissions will be handled via the <strong>Meteor</strong>. Details coming soon.
               </div>
             </div>
           </div>
@@ -1036,8 +1046,8 @@ export default function Page() {
               <div className="card">
                 <div className="cardTitle">How to submit</div>
                 <ul className="list">
-                  <li>Prepare an anonymized manuscript compliant with CCIS formatting instructions (link to be posted).</li>
-                  <li>Submit via Meteor (Springer). The submission portal link will appear here once available.</li>
+                  <li>Prepare an anonymized manuscript compliant with given formatting instructions (link to be posted).</li>
+                  <li>Submit via Meteor. The submission portal link will appear here once available.</li>
                   <li>Ensure all figures, appendices, and supplementary materials are anonymized.</li>
                 </ul>
                 <div className="divider" />
@@ -1055,7 +1065,7 @@ export default function Page() {
                 </p>
                 <div className="divider" />
                 <div className="note">
-                  We will post: portal link, CCIS template, author instructions, and policy checklist.
+                  We will post: portal link, paper template, author instructions, and policy checklist.
                 </div>
               </div>
             </div>
@@ -1278,6 +1288,7 @@ export default function Page() {
     </div>
   );
 }
+
 
 
 
