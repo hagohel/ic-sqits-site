@@ -1174,11 +1174,11 @@ export default function Page() {
                     </span>
                   </div>
 
-                  <div className="divider" />
-                  <div className="note">
+                  {/* <div className="divider" />
+                   <div className="note">
                     Note: This form uses <strong>mailto</strong> (no server). If you prefer a true web submission (without
                     email client), we can add a free form backend later (Formspree / Google Forms / Vercel Functions).
-                  </div>
+                  </div> */}
                 </form>
               </div>
             </div>
@@ -1218,14 +1218,15 @@ export default function Page() {
           <div>
             © 2026 IC-SQITS. All rights reserved.
           </div>
-          <div className="tiny" style={{ marginTop: 8 }}>
+          {/* <div className="tiny" style={{ marginTop: 8 }}>
             Built on Next.js and deployed on Vercel.
-          </div>
+          </div> */}
         </div>
       </footer>
     </div>
   );
 }
+
 
 
 
