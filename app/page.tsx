@@ -1183,7 +1183,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="col5">
+            {/* <div className="col5">
               <div className="card">
                 <div className="cardTitle">Conference details</div>
                 <ul className="list">
@@ -1208,7 +1208,7 @@ export default function Page() {
                   For urgent matters, email: <strong>{EMAIL_TO}</strong>
                 </div> 
               </div>
-            </div>
+            </div> */}
           </div> 
         </div> 
       </section>
@@ -1216,7 +1216,7 @@ export default function Page() {
       <footer className="footer">
         <div className="container">
           <div>
-            © 2026 IC-SQITS. All rights reserved. /*• San Antonio, TX • Dec 10–11, 2026 • Proceedings: {meta.proceedings} */
+            © 2026 IC-SQITS. All rights reserved.
           </div>
           <div className="tiny" style={{ marginTop: 8 }}>
             Built on Next.js and deployed on Vercel.
@@ -1226,6 +1226,7 @@ export default function Page() {
     </div>
   );
 }
+
 
 
 
