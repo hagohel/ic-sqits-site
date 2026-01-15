@@ -1076,8 +1076,6 @@ export default function Page() {
                 <div className="cardTitle">Status</div>
                 <ul className="list">
                   <li>Registration: <strong>Coming Soon</strong></li>
-                  <li>Categories: Regular / Student / Industry / Author (to be confirmed)</li>
-                  <li>Venue: UTSA Downtown — 501 W César E Chávez Blvd, San Antonio, TX 78207</li>
                 </ul>
               </div>
             </div>
@@ -1086,10 +1084,10 @@ export default function Page() {
               <div className="card">
                 <div className="cardTitle">Travel & lodging</div>
                 <p className="lead" style={{ marginTop: 6 }}>
-                  Hotel recommendations and campus access/parking info will be posted here.
+                  Coming soon.
                 </p>
                 <div className="divider" />
-                <div className="note">If you need an invitation letter, contact the organizers using the form below.</div>
+                <div className="note">If you need an invitation letter for visa, contact the organizers using the form below.</div>
               </div>
             </div>
           </div>
@@ -1103,7 +1101,7 @@ export default function Page() {
             <div>
               <h2 className="h2">Contact</h2>
               <div className="subline">
-                Quick message form (opens your email client and sends to <strong>{EMAIL_TO}</strong>).
+                Fill the following form.
               </div>
             </div>
           </div>
@@ -1185,7 +1183,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="col5">
+          /*  <div className="col5">
               <div className="card">
                 <div className="cardTitle">Conference details</div>
                 <ul className="list">
@@ -1206,19 +1204,19 @@ export default function Page() {
                   </li>
                 </ul>
                 <div className="divider" />
-                <div className="note">
+                /* <div className="note">
                   For urgent matters, email: <strong>{EMAIL_TO}</strong>
-                </div>
+                </div> */
               </div>
             </div>
           </div>
-        </div>
+        </div> */
       </section>
 
       <footer className="footer">
         <div className="container">
           <div>
-            © 2026 IC-SQITS. All rights reserved. • San Antonio, TX • Dec 10–11, 2026 • Proceedings: {meta.proceedings}
+            © 2026 IC-SQITS. All rights reserved. /*• San Antonio, TX • Dec 10–11, 2026 • Proceedings: {meta.proceedings} */
           </div>
           <div className="tiny" style={{ marginTop: 8 }}>
             Built on Next.js and deployed on Vercel.
@@ -1228,3 +1226,4 @@ export default function Page() {
     </div>
   );
 }
+
