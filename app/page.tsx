@@ -783,7 +783,7 @@ export default function Page() {
           <div className="heroGrid">
             <div className="panel">
               <div className="panelInner">
-                <div className="heroBadgeRow">
+                {/* <div className="heroBadgeRow">
                   <span className="badge">
                     <span className="badgeDot" />
                     Proceedings: <strong>{meta.proceedings}</strong>
@@ -796,7 +796,7 @@ export default function Page() {
                     <span className="badgeDot" />
                     San Antonio, Texas (USA)
                   </span>
-                </div>
+                </div> */}
 
                 <h1 className="h1">{meta.fullName}</h1>
 
@@ -805,15 +805,15 @@ export default function Page() {
                   <strong>quantum computing</strong>, <strong>AI-driven defense</strong>, and <strong>systemic trust</strong>.
                 </p>
 
-                <div className="pills" aria-label="Conference highlights">
+                {/* <div className="pills" aria-label="Conference highlights">
                   <span className="pill">UTSA Downtown Campus</span>
                   <span className="pill">CCIS proceedings (planned)</span>
                   <span className="pill">Double-blind review</span>
                   <span className="pill">Minimum 3 reviews</span>
                   <span className="pill">Quantum-safe + Trusted AI</span>
-                </div>
+                </div> */}
 
-                <div className="ctaRow">
+                {/* <div className="ctaRow">
                   <a className="btn btnPrimary" href={meta.ctas.cfp}>
                     View Call for Papers
                   </a>
@@ -826,7 +826,7 @@ export default function Page() {
                   <a className="btn" href={meta.ctas.contact}>
                     Contact
                   </a>
-                </div>
+                </div> */}
 
                 <div className="divider" />
 
@@ -1278,6 +1278,7 @@ export default function Page() {
     </div>
   );
 }
+
 
 
 
