@@ -9,9 +9,10 @@ type ContactForm = {
 };
 
 const EMAIL_TO = "hagohel@gmail.com";
-const [menuOpen, setMenuOpen] = useState(false);
+
 
 export default function Page() {
+  const [menuOpen, setMenuOpen] = useState(false);
   const [form, setForm] = useState<ContactForm>({
     name: "",
     email: "",
@@ -1277,6 +1278,7 @@ export default function Page() {
     </div>
   );
 }
+
 
 
 
