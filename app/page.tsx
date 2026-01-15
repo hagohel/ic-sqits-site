@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useMemo, useState } from "react";
 
 type ContactForm = {
@@ -10,6 +9,7 @@ type ContactForm = {
 };
 
 const EMAIL_TO = "hagohel@gmail.com";
+const [menuOpen, setMenuOpen] = useState(false);
 
 export default function Page() {
   const [form, setForm] = useState<ContactForm>({
@@ -673,6 +673,17 @@ export default function Page() {
           color: rgba(255, 255, 255, 0.65);
           line-height: 1.55;
         }
+.menuBtn {
+  display: none;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.92);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 18px;
+  font-weight: 900;
+  cursor: pointer;
+}
 
         @media (max-width: 980px) {
           .heroGrid {
@@ -695,6 +706,37 @@ export default function Page() {
           .h1 {
             font-size: 38px;
           }
+            .menuBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navLinks {
+    position: fixed;
+    top: 64px;
+    left: 14px;
+    right: 14px;
+    display: none;               /* hidden by default */
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px;
+    border-radius: 16px;
+    background: rgba(10, 11, 15, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(14px);
+    box-shadow: var(--shadow);
+  }
+
+  .navLinks.open {
+    display: flex;               /* shown when open */
+  }
+
+  .navLinks a {
+    padding: 12px 12px;
+    border-radius: 12px;
+  }
+
         }
       `}</style>
 
@@ -711,16 +753,25 @@ export default function Page() {
               </div>
             </div>
 
-            <nav className="navLinks" aria-label="Primary navigation">
-              <a href="#home">Home</a>
-              <a href="#about">About</a>
-              <a href="#tracks">Tracks</a>
-              <a href="#cfp">CFP</a>
-              <a href="#submission">Submission</a>
-              <a href="#committee">Committee</a>
-              <a href="#registration">Registration</a>
-              <a href="#contact">Contact</a>
-            </nav>
+           <button
+  className="menuBtn"
+  aria-label="Toggle navigation menu"
+  onClick={() => setMenuOpen((v) => !v)}
+>
+  ☰
+</button>
+
+<nav className={`navLinks ${menuOpen ? "open" : ""}`} aria-label="Primary navigation">
+  <a href="#home" onClick={() => setMenuOpen(false)}>Home</a>
+  <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
+  <a href="#tracks" onClick={() => setMenuOpen(false)}>Tracks</a>
+  <a href="#cfp" onClick={() => setMenuOpen(false)}>CFP</a>
+  <a href="#submission" onClick={() => setMenuOpen(false)}>Submission</a>
+  <a href="#committee" onClick={() => setMenuOpen(false)}>Committee</a>
+  <a href="#registration" onClick={() => setMenuOpen(false)}>Registration</a>
+  <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+</nav>
+
           </div>
         </div>
       </header>
@@ -1226,6 +1277,7 @@ export default function Page() {
     </div>
   );
 }
+
 
 
 
