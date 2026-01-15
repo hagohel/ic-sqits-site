@@ -1209,8 +1209,8 @@ export default function Page() {
                 </div> 
               </div>
             </div>
-          </div>
-        </div> */}
+          </div> */}
+        </div> 
       </section>
 
       <footer className="footer">
@@ -1226,6 +1226,7 @@ export default function Page() {
     </div>
   );
 }
+
 
 
 
