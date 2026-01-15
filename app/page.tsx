@@ -1204,9 +1204,9 @@ export default function Page() {
                   </li>
                 </ul>
                 <div className="divider" />
-                /* <div className="note">
+                 <div className="note">
                   For urgent matters, email: <strong>{EMAIL_TO}</strong>
-                </div> */
+                </div> 
               </div>
             </div>
           </div>
@@ -1226,5 +1226,6 @@ export default function Page() {
     </div>
   );
 }
+
 
 
