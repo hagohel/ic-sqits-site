@@ -26,7 +26,7 @@ export default function Page() {
     () => ({
       acronym: "IC-SQITS 2026",
       fullName: "International Conference on Secure Quantum Intelligence and Trusted Systems",
-      proceedings: "Proceedings with Springer Communications in Computer and Information Science (Planned)",
+      proceedings: "Conference Proceedings with Springer Nature (Planned)",
       dates: "10–11 December 2026",
       venue: "University of Texas at San Antonio (UTSA) – Downtown Campus",
       address: "501 W César E Chávez Blvd, San Antonio, TX 78207",
@@ -1278,6 +1278,7 @@ export default function Page() {
     </div>
   );
 }
+
 
 
 
