@@ -83,24 +83,24 @@ export default function Page() {
   const organizers = useMemo(
     () => ({
       generalChairs: [
-        "Dr. Hardik Gohel — Texas A&M University–Victoria, United States",
-        "Dr. Usharani Hareesh Govindarajan — Shanghai Jiao Tong University, China",
+        "Dr. Hardik Gohel, Texas A&M University–Victoria, United States",
+        "Dr. Usharani Hareesh Govindarajan, Shanghai Jiao Tong University, China",
       ],
       programChairs: [
-        "Dr. Himanshu Upadhyay — Florida International University, United States",
-        "Dr. Shekhar Bhansali — Vanderbilt University, United States",
-        "Dr. Suresh Kumar Peddoju — University of Houston, United States",
+        "Dr. Himanshu Upadhyay, Florida International University, United States",
+        "Dr. Shekhar Bhansali, Vanderbilt University, United States",
+        "Dr. Suresh Kumar Peddoju, University of Houston, United States",
       ],
       tpc: [
-        "Dr. Weiwei Jiang — Beijing University of Posts and Telecommunications, China",
-        "Dr. Aparna Aravelli — North Carolina A&T State University, United States",
-        "Abdul Razaque — Ohio Northern University, United States",
-        "Kotsyuba Igor Yuryevich — ITMO University, Russia",
-        "Naveen Chilamkurti — La Trobe University, Australia",
-        "Thomas Newe — University of Limerick, Ireland",
-        "Bhagwan Das, Torrens University Australia, Melbourne, Victoria, Australia",
-        "Wan Abu Bakar Aezwani, University of Sultan Zainal Abdin, Malaysia",
-        "Laura Aldasheva, Astana IT University, Astana, Kazakhstan",
+        "Dr. Weiwei Jiang, Beijing University of Posts and Telecommunications, China",
+        "Dr. Aparna Aravelli, North Carolina A&T State University, United States",
+        "Dr. Abdul Razaque, Ohio Northern University, United States",
+        "Dr. Kotsyuba Igor Yuryevich, ITMO University, Russia",
+        "Dr. Naveen Chilamkurti, La Trobe University, Australia",
+        "Dr. Thomas Newe, University of Limerick, Ireland",
+        "Dr. Bhagwan Das, Torrens University Australia, Melbourne, Victoria, Australia",
+        "Dr. Wan Abu Bakar Aezwani, University of Sultan Zainal Abdin, Malaysia",
+        "Dr. Laura Aldasheva, Astana IT University, Astana, Kazakhstan",
         "Dr. Nikhil Bhalla, Ulster University, United Kingdom",
         "Dr. Scheila Wesley Martins, University of Roehampton, United Kingdom",
         "Dr. Tarek R. Besold Sony Inc., Spain",
@@ -1289,6 +1289,7 @@ export default function Page() {
     </div>
   );
 }
+
 
 
 
