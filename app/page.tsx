@@ -101,7 +101,8 @@ export default function Page() {
         "Bhagwan Das, Torrens University Australia, Melbourne, Victoria, Australia",
         "Wan Abu Bakar Aezwani, University of Sultan Zainal Abdin, Malaysia",
         "Laura Aldasheva, Astana IT University, Astana, Kazakhstan",
-        "Dr. Nikhil Bhalla, Ulster University, UK",
+        "Dr. Nikhil Bhalla, Ulster University, United Kingdom",
+        "Dr. Scheila Wesley Martins, University of Roehampton, United Kingdom",
         "Dr. Tarek R. Besold Sony Inc., Spain",
         "Dr. Ajeet Kaushik, Florida Polytech, United States",
         "Dr. Gagan Narang, Università Politecnica delle Marche, Italy",
@@ -1288,6 +1289,7 @@ export default function Page() {
     </div>
   );
 }
+
 
 
 
