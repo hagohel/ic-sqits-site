@@ -103,7 +103,7 @@ export default function Page() {
         "Laura Aldasheva, Astana IT University, Astana, Kazakhstan",
         "Dr. Nikhil Bhalla, Ulster University, UK",
         "Dr. Tarek R. Besold Sony Inc., Spain",
-        "Dr. Ajeet Kaushik, Florida Polytech, (USA),
+        "Dr. Ajeet Kaushik, Florida Polytech, (USA)",
         "Dr. Gagan Narang, Università Politecnica delle Marche, Italy",
         "Dr. Chinmay Chakraborty, Birla Institute of Technology, India",
         "Dr. Siddhant Sharma, Boston Univesity, (USA)",
@@ -1288,6 +1288,7 @@ export default function Page() {
     </div>
   );
 }
+
 
 
 
