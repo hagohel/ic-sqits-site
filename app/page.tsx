@@ -25,7 +25,7 @@ export default function Page() {
   const meta = useMemo(
     () => ({
       acronym: "IC-SQITS 2026",
-      fullName: "International Conference on Secure Quantum Intelligence and Trusted Systems", /*proceedings: "Conference Proceedings with Springer Nature (Planned)",*/
+      fullName: "International Conference on Secure Quantum Intelligence and Trusted Systems",
       dates: "10–11 December 2026",
       venue: "University of Texas at San Antonio (UTSA) – Downtown Campus",
       address: "501 W César E Chávez Blvd, San Antonio, TX 78207",
@@ -1287,6 +1287,7 @@ export default function Page() {
     </div>
   );
 }
+
 
 
 
