@@ -1183,7 +1183,7 @@ export default function Page() {
               </div>
             </div>
 
-          /*  <div className="col5">
+            { /*  <div className="col5">
               <div className="card">
                 <div className="cardTitle">Conference details</div>
                 <ul className="list">
@@ -1210,7 +1210,7 @@ export default function Page() {
               </div>
             </div>
           </div>
-        </div> */
+        </div> */}
       </section>
 
       <footer className="footer">
@@ -1226,4 +1226,5 @@ export default function Page() {
     </div>
   );
 }
+
 
