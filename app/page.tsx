@@ -85,11 +85,13 @@ export default function Page() {
       generalChairs: [
         "Dr. Hardik Gohel, Texas A&M University–Victoria, United States",
         "Dr. Usharani Hareesh Govindarajan, Shanghai Jiao Tong University, China",
+        "Dr. Yun Wan, University of Houston-Downtown, United States"
       ],
       programChairs: [
         "Dr. Himanshu Upadhyay, Florida International University, United States",
-        "Dr. Shekhar Bhansali, Vanderbilt University, United States",
+        "Dr. Biswajeet Pandey, Dr. A. P. J. Abdul Kalam Technical University, India",
         "Dr. Suresh Kumar Peddoju, University of Houston, United States",
+        "Dr. Shekhar Bhansali, Vanderbilt University, United States",
       ],
       tpc: [
         "Dr. Weiwei Jiang, Beijing University of Posts and Telecommunications, China",
@@ -1289,6 +1291,7 @@ export default function Page() {
     </div>
   );
 }
+
 
 
 
