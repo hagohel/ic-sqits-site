@@ -1,5 +1,6 @@
 "use client";
-import React, { useMemo, useState } from "react";
+
+import React, { useEffect, useMemo, useState } from "react";
 
 type ContactForm = {
   name: string;
@@ -10,9 +11,12 @@ type ContactForm = {
 
 const EMAIL_TO = "hagohel@gmail.com";
 
+type ThemeMode = "dark" | "light";
 
 export default function Page() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<ThemeMode>("dark");
+
   const [form, setForm] = useState<ContactForm>({
     name: "",
     email: "",
@@ -22,22 +26,33 @@ export default function Page() {
 
   const [status, setStatus] = useState<"idle" | "ready" | "error">("idle");
 
+  // Apply theme + persist
+  useEffect(() => {
+    const saved = (typeof window !== "undefined" ? window.localStorage.getItem("ic_sqits_theme") : null) as
+      | ThemeMode
+      | null;
+
+    const initial: ThemeMode = saved ?? "dark";
+    setTheme(initial);
+    document.documentElement.dataset.theme = initial;
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    if (typeof window !== "undefined") window.localStorage.setItem("ic_sqits_theme", theme);
+  }, [theme]);
+
   const meta = useMemo(
     () => ({
       acronym: "IC-SQITS 2026",
       fullName: "International Conference on Secure Quantum Intelligence and Trusted Systems",
       proceedings: "Conference Proceedings (Planning stage)",
       dates: "10–11 December 2026",
-      venue: "University of Texas at San Antonio (UTSA) – Downtown Campus",
+      venue: "University of Texas at San Antonio (UTSA) — Downtown Campus",
       address: "501 W César E Chávez Blvd, San Antonio, TX 78207",
+      cityLine: "San Antonio, Texas, United States",
       theme:
         "IC-SQITS 2026 is a premier interdisciplinary platform at the convergence of quantum computing, AI-driven defense, and systemic trust. It brings together researchers, industry leaders, and policy makers to address the security challenges and opportunities created by the post-quantum and AI era. The conference focuses on building resilient, trustworthy, and future-proof digital infrastructures that can withstand emerging quantum and AI-enabled threats. By integrating advances in cryptography, artificial intelligence, and trusted systems engineering, IC-SQITS aims to shape the next generation of secure, intelligent technologies for critical applications worldwide.",
-      ctas: {
-        cfp: "#cfp",
-        submission: "#submission",
-        registration: "#registration",
-        contact: "#contact",
-      },
     }),
     []
   );
@@ -85,7 +100,7 @@ export default function Page() {
       generalChairs: [
         "Dr. Hardik Gohel, Texas A&M University–Victoria, United States",
         "Dr. Usharani Hareesh Govindarajan, Shanghai Jiao Tong University, China",
-        "Dr. Yun Wan, University of Houston-Downtown, United States"
+        "Dr. Yun Wan, University of Houston-Downtown, United States",
       ],
       programChairs: [
         "Dr. Himanshu Upadhyay, Florida International University, United States",
@@ -105,13 +120,12 @@ export default function Page() {
         "Dr. Laura Aldasheva, Astana IT University, Astana, Kazakhstan",
         "Dr. Nikhil Bhalla, Ulster University, United Kingdom",
         "Dr. Scheila Wesley Martins, University of Roehampton, United Kingdom",
-        "Dr. Tarek R. Besold Sony Inc., Spain",
+        "Dr. Tarek R. Besold, Sony Inc., Spain",
         "Dr. Ajeet Kaushik, Florida Polytech, United States",
         "Dr. Gagan Narang, Università Politecnica delle Marche, Italy",
         "Dr. Chinmay Chakraborty, Birla Institute of Technology, India",
-        "Dr. Siddhant Sharma, Boston Univesity, United States",
-        "Dr. Yu Zhiwen, Professor at South China University of Technology, China",
-        
+        "Dr. Siddhant Sharma, Boston University, United States",
+        "Dr. Yu Zhiwen, South China University of Technology, China",
       ],
     }),
     []
@@ -130,12 +144,12 @@ export default function Page() {
           "Each submission receives at least three independent reviews. Initial reviews are due by July 15, 2026.",
       },
       {
-        title: "Revision & rebuttal cycle",
+        title: "Revision cycle",
         body:
           "Based on reviewer feedback, authors may be invited to submit a revised manuscript by Aug 30, 2026. The TPC evaluates revisions for final decisions.",
       },
       {
-        title: "Ethics, originality, and overlap policy",
+        title: "Originality & overlap policy",
         body:
           "Submissions must be original, unpublished, and not under review elsewhere. Substantial overlap (including self-plagiarism) may result in desk rejection.",
       },
@@ -145,19 +159,21 @@ export default function Page() {
           "Conflicts of interest are managed by the Program Chairs. Conflicted reviewers will not be assigned to the paper.",
       },
       {
-        title: "Quality bar for proceedings",
+        title: "Camera-ready requirements",
         body:
-          "Accepted papers must meet given formatting and quality requirements; final camera-ready versions are due Nov 10, 2026.",
+          "Accepted papers must meet the final formatting and quality requirements; camera-ready versions are due Nov 10, 2026.",
       },
     ],
     []
   );
 
-  const onChange = (key: keyof ContactForm) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const value = e.target.value;
-    setForm((p) => ({ ...p, [key]: value }));
-    setStatus("idle");
-  };
+  const onChange =
+    (key: keyof ContactForm) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+      const value = e.target.value;
+      setForm((p) => ({ ...p, [key]: value }));
+      setStatus("idle");
+    };
 
   const validate = (): { ok: boolean; msg?: string } => {
     if (!form.name.trim()) return { ok: false, msg: "Please enter your name." };
@@ -189,41 +205,70 @@ export default function Page() {
     ].join("\n");
 
     const mailto = `mailto:${encodeURIComponent(EMAIL_TO)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
     setStatus("ready");
     window.location.href = mailto;
   };
+
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <div>
       <style jsx global>{`
         :root {
-          --bg: #0b0c10;
-          --panel: rgba(255, 255, 255, 0.08);
-          --panel2: rgba(255, 255, 255, 0.06);
-          --border: rgba(255, 255, 255, 0.14);
-          --border2: rgba(255, 255, 255, 0.10);
-          --text: rgba(255, 255, 255, 0.92);
-          --muted: rgba(255, 255, 255, 0.72);
-          --muted2: rgba(255, 255, 255, 0.60);
-          --shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-          --shadow2: 0 10px 28px rgba(0, 0, 0, 0.25);
+          /* Base */
+          --max: 1140px;
           --radius: 18px;
           --radius2: 14px;
-          --max: 1120px;
+          --shadow: 0 18px 60px rgba(0, 0, 0, 0.22);
+          --shadow2: 0 12px 34px rgba(0, 0, 0, 0.16);
+
+          /* Blue brand */
+          --brand: #2f6bff;
+          --brand2: #57b7ff;
+          --brand3: #6c5cff;
+          --brandText: rgba(255, 255, 255, 0.98);
+
+          /* Theme tokens (dark default) */
+          --bg0: #070a14;
+          --bg1: #0b1022;
+          --panel: rgba(255, 255, 255, 0.06);
+          --panel2: rgba(255, 255, 255, 0.04);
+          --border: rgba(255, 255, 255, 0.12);
+          --border2: rgba(255, 255, 255, 0.09);
+          --text: rgba(255, 255, 255, 0.94);
+          --muted: rgba(255, 255, 255, 0.74);
+          --muted2: rgba(255, 255, 255, 0.60);
+
+          --focus: rgba(87, 183, 255, 0.35);
+        }
+
+        html[data-theme="light"] {
+          --bg0: #f6f9ff;
+          --bg1: #eef4ff;
+          --panel: rgba(255, 255, 255, 0.75);
+          --panel2: rgba(255, 255, 255, 0.60);
+          --border: rgba(17, 24, 39, 0.12);
+          --border2: rgba(17, 24, 39, 0.08);
+          --text: rgba(17, 24, 39, 0.94);
+          --muted: rgba(17, 24, 39, 0.74);
+          --muted2: rgba(17, 24, 39, 0.60);
+
+          --shadow: 0 18px 60px rgba(17, 24, 39, 0.12);
+          --shadow2: 0 12px 34px rgba(17, 24, 39, 0.10);
         }
 
         html,
         body {
           padding: 0;
           margin: 0;
-          background: radial-gradient(1200px 700px at 15% -10%, rgba(255, 255, 255, 0.10), transparent 55%),
-            radial-gradient(900px 600px at 90% 0%, rgba(255, 255, 255, 0.08), transparent 52%),
-            radial-gradient(800px 520px at 60% 120%, rgba(255, 255, 255, 0.06), transparent 55%),
-            linear-gradient(180deg, #07080b 0%, #0b0c10 40%, #07080b 100%);
           color: var(--text);
           font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
             "Segoe UI Emoji";
+          background:
+            radial-gradient(1000px 700px at 14% -10%, rgba(87, 183, 255, 0.35), transparent 55%),
+            radial-gradient(900px 650px at 94% 0%, rgba(47, 107, 255, 0.22), transparent 55%),
+            radial-gradient(800px 600px at 55% 120%, rgba(108, 92, 255, 0.18), transparent 55%),
+            linear-gradient(180deg, var(--bg0), var(--bg1));
         }
 
         * {
@@ -232,6 +277,13 @@ export default function Page() {
 
         a {
           color: inherit;
+          text-decoration: none;
+        }
+
+        :focus-visible {
+          outline: 2px solid var(--focus);
+          outline-offset: 2px;
+          border-radius: 10px;
         }
 
         .container {
@@ -240,18 +292,20 @@ export default function Page() {
           padding: 0 20px;
         }
 
+        /* Top accent */
         .topline {
-          height: 4px;
-          background: linear-gradient(90deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.28) 40%, rgba(255, 255, 255, 0.90) 100%);
-          opacity: 0.85;
+          height: 3px;
+          background: linear-gradient(90deg, var(--brand), var(--brand2), var(--brand3));
+          opacity: 0.95;
         }
 
+        /* Nav */
         .nav {
           position: sticky;
           top: 0;
           z-index: 50;
           backdrop-filter: blur(14px);
-          background: rgba(10, 11, 15, 0.55);
+          background: color-mix(in srgb, var(--bg0) 55%, transparent);
           border-bottom: 1px solid var(--border2);
         }
 
@@ -260,7 +314,7 @@ export default function Page() {
           align-items: center;
           justify-content: space-between;
           padding: 14px 0;
-          gap: 16px;
+          gap: 14px;
         }
 
         .brand {
@@ -275,17 +329,16 @@ export default function Page() {
           height: 34px;
           border-radius: 12px;
           background: radial-gradient(14px 14px at 30% 30%, rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.10));
-          border: 1px solid rgba(255, 255, 255, 0.22);
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+          border: 1px solid var(--border);
+          box-shadow: var(--shadow2);
         }
 
         .brandTitle {
-          font-weight: 900;
+          font-weight: 950;
           letter-spacing: 0.6px;
           line-height: 1;
           font-size: 14px;
           text-transform: uppercase;
-          color: rgba(255, 255, 255, 0.92);
         }
 
         .brandSub {
@@ -294,145 +347,165 @@ export default function Page() {
           margin-top: 3px;
         }
 
+        .navRight {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
         .navLinks {
           display: flex;
-          gap: 14px;
+          gap: 10px;
           flex-wrap: wrap;
           justify-content: flex-end;
           align-items: center;
         }
 
         .navLinks a {
-          text-decoration: none;
-          font-weight: 700;
+          font-weight: 800;
           font-size: 13px;
-          color: rgba(255, 255, 255, 0.86);
-          padding: 8px 10px;
+          color: var(--muted);
+          padding: 9px 10px;
           border-radius: 12px;
           border: 1px solid transparent;
         }
 
         .navLinks a:hover {
-          border-color: rgba(255, 255, 255, 0.20);
-          background: rgba(255, 255, 255, 0.05);
+          color: var(--text);
+          border-color: var(--border2);
+          background: var(--panel2);
         }
 
+        .iconBtn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          height: 38px;
+          padding: 0 12px;
+          border-radius: 12px;
+          border: 1px solid var(--border2);
+          background: var(--panel2);
+          color: var(--muted);
+          font-weight: 850;
+          font-size: 13px;
+          cursor: pointer;
+        }
+
+        .iconBtn:hover {
+          color: var(--text);
+          border-color: var(--border);
+          background: var(--panel);
+        }
+
+        .menuBtn {
+          display: none;
+        }
+
+        /* Hero */
         .hero {
-          padding: 52px 0 26px;
+          padding: 44px 0 22px;
         }
 
         .heroGrid {
           display: grid;
-          grid-template-columns: 1.25fr 0.85fr;
-          gap: 18px;
+          grid-template-columns: 1.3fr 0.7fr;
+          gap: 16px;
+          align-items: start;
         }
 
         .panel {
           border: 1px solid var(--border);
           border-radius: var(--radius);
-          background: var(--panel);
+          background: linear-gradient(180deg, var(--panel), var(--panel2));
           box-shadow: var(--shadow);
+          overflow: hidden;
+          position: relative;
+        }
+
+        .panel:before {
+          content: "";
+          position: absolute;
+          inset: -2px;
+          background: radial-gradient(500px 240px at 22% 0%, rgba(87, 183, 255, 0.22), transparent 60%);
+          pointer-events: none;
         }
 
         .panelInner {
+          position: relative;
           padding: 22px;
         }
 
-        .heroBadgeRow {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 10px;
-          align-items: center;
-          margin-bottom: 12px;
-        }
-
-        .badge {
+        .eyebrow {
           display: inline-flex;
           align-items: center;
           gap: 10px;
           padding: 8px 12px;
           border-radius: 999px;
-          border: 1px solid rgba(255, 255, 255, 0.20);
-          background: rgba(255, 255, 255, 0.06);
+          border: 1px solid var(--border2);
+          background: color-mix(in srgb, var(--panel2) 80%, transparent);
+          color: var(--muted);
           font-size: 12px;
           font-weight: 900;
           letter-spacing: 0.2px;
         }
 
-        .badgeDot {
-          width: 6px;
-          height: 6px;
+        .dot {
+          width: 8px;
+          height: 8px;
           border-radius: 999px;
-          background: rgba(255, 255, 255, 0.85);
-          opacity: 0.8;
+          background: linear-gradient(180deg, var(--brand2), var(--brand));
+          box-shadow: 0 0 0 4px rgba(87, 183, 255, 0.14);
         }
 
         .h1 {
+          margin: 14px 0 10px 0;
           font-size: 46px;
-          line-height: 1.03;
+          line-height: 1.06;
           letter-spacing: -0.9px;
-          margin: 0 0 12px 0;
         }
 
         .lead {
-          margin: 0 0 14px 0;
+          margin: 0;
           color: var(--muted);
-          line-height: 1.7;
-          font-size: 15.5px;
+          line-height: 1.75;
+          font-size: 15.6px;
         }
 
-        .pills {
+        .divider {
+          height: 1px;
+          background: var(--border2);
+          margin: 16px 0;
+        }
+
+        .kv {
+          display: grid;
+          gap: 10px;
+        }
+
+        .kvRow {
           display: flex;
           flex-wrap: wrap;
           gap: 10px;
-          margin: 16px 0 0;
+          align-items: center;
         }
 
-        .pill {
-          font-size: 12px;
-          font-weight: 900;
-          padding: 8px 12px;
-          border-radius: 999px;
-          border: 1px solid rgba(255, 255, 255, 0.18);
-          background: rgba(255, 255, 255, 0.05);
-          color: rgba(255, 255, 255, 0.88);
-        }
-
-        .ctaRow {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 10px;
-          margin-top: 18px;
-        }
-
-        .btn {
+        .kvPill {
           display: inline-flex;
           align-items: center;
-          justify-content: center;
           gap: 10px;
-          padding: 11px 14px;
+          padding: 10px 12px;
           border-radius: 14px;
-          border: 1px solid rgba(255, 255, 255, 0.22);
-          text-decoration: none;
-          font-weight: 900;
-          font-size: 13px;
-          letter-spacing: 0.2px;
-          background: rgba(255, 255, 255, 0.10);
+          border: 1px solid var(--border2);
+          background: var(--panel2);
+          font-size: 12.5px;
+          color: var(--muted);
+          font-weight: 850;
         }
 
-        .btn:hover {
-          background: rgba(255, 255, 255, 0.14);
-          border-color: rgba(255, 255, 255, 0.30);
-        }
-
-        .btnPrimary {
-          background: rgba(255, 255, 255, 0.92);
-          color: rgba(10, 11, 15, 0.96);
-          border-color: rgba(255, 255, 255, 0.75);
-        }
-
-        .btnPrimary:hover {
-          background: rgba(255, 255, 255, 0.98);
+        .kvPill strong {
+          color: var(--text);
+          font-weight: 950;
         }
 
         .cardStack {
@@ -441,8 +514,8 @@ export default function Page() {
         }
 
         .miniCard {
-          border: 1px solid rgba(255, 255, 255, 0.16);
-          background: rgba(255, 255, 255, 0.06);
+          border: 1px solid var(--border2);
+          background: linear-gradient(180deg, var(--panel), var(--panel2));
           border-radius: var(--radius2);
           padding: 16px;
           box-shadow: var(--shadow2);
@@ -450,7 +523,7 @@ export default function Page() {
 
         .cardTitle {
           margin: 0 0 10px 0;
-          font-weight: 1000;
+          font-weight: 950;
           letter-spacing: -0.2px;
           font-size: 16px;
         }
@@ -458,16 +531,13 @@ export default function Page() {
         .list {
           margin: 0;
           padding-left: 18px;
-          color: rgba(255, 255, 255, 0.84);
+          color: var(--muted);
           line-height: 1.75;
         }
 
-        .muted {
-          color: var(--muted2);
-        }
-
+        /* Sections */
         .section {
-          padding: 28px 0;
+          padding: 26px 0;
         }
 
         .sectionHead {
@@ -511,44 +581,38 @@ export default function Page() {
         }
 
         .card {
-          border: 1px solid rgba(255, 255, 255, 0.16);
+          border: 1px solid var(--border2);
           border-radius: var(--radius);
-          background: rgba(255, 255, 255, 0.06);
+          background: linear-gradient(180deg, var(--panel), var(--panel2));
           box-shadow: var(--shadow2);
           padding: 18px;
-        }
-
-        .divider {
-          height: 1px;
-          background: rgba(255, 255, 255, 0.10);
-          margin: 14px 0;
         }
 
         .kpiGrid {
           display: grid;
           grid-template-columns: repeat(3, minmax(0, 1fr));
           gap: 10px;
-          margin-top: 12px;
+          margin-top: 14px;
         }
 
         .kpi {
-          border: 1px solid rgba(255, 255, 255, 0.14);
-          border-radius: 14px;
-          padding: 12px;
-          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid var(--border2);
+          border-radius: 16px;
+          padding: 14px;
+          background: color-mix(in srgb, var(--panel2) 80%, transparent);
         }
 
         .kpiVal {
+          margin: 0;
           font-weight: 1000;
           letter-spacing: -0.4px;
           font-size: 16px;
-          margin: 0;
         }
 
         .kpiLabel {
           margin: 6px 0 0 0;
           color: var(--muted2);
-          font-size: 12px;
+          font-size: 12.5px;
           line-height: 1.5;
         }
 
@@ -565,24 +629,24 @@ export default function Page() {
           align-items: flex-start;
           padding: 12px;
           border-radius: 14px;
-          border: 1px solid rgba(255, 255, 255, 0.14);
-          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid var(--border2);
+          background: color-mix(in srgb, var(--panel2) 80%, transparent);
         }
 
         .chipIcon {
           width: 10px;
           height: 10px;
           border-radius: 999px;
-          background: rgba(255, 255, 255, 0.85);
+          background: linear-gradient(180deg, var(--brand2), var(--brand));
           margin-top: 5px;
-          opacity: 0.8;
+          box-shadow: 0 0 0 4px rgba(87, 183, 255, 0.12);
           flex: 0 0 auto;
         }
 
         .chipText {
           font-size: 13px;
           line-height: 1.55;
-          color: rgba(255, 255, 255, 0.84);
+          color: var(--muted);
         }
 
         .guideline {
@@ -594,19 +658,19 @@ export default function Page() {
         .guidelineItem {
           padding: 14px;
           border-radius: 14px;
-          border: 1px solid rgba(255, 255, 255, 0.14);
-          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid var(--border2);
+          background: color-mix(in srgb, var(--panel2) 80%, transparent);
         }
 
         .guidelineTitle {
           margin: 0 0 6px 0;
-          font-weight: 1000;
+          font-weight: 950;
           letter-spacing: -0.2px;
         }
 
         .guidelineBody {
           margin: 0;
-          color: rgba(255, 255, 255, 0.82);
+          color: var(--muted);
           line-height: 1.7;
           font-size: 13.5px;
         }
@@ -615,9 +679,10 @@ export default function Page() {
           margin: 10px 0 0 0;
           padding-left: 18px;
           line-height: 1.8;
-          color: rgba(255, 255, 255, 0.84);
+          color: var(--muted);
         }
 
+        /* Form */
         .formGrid {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -632,8 +697,8 @@ export default function Page() {
 
         label {
           font-size: 12px;
-          color: rgba(255, 255, 255, 0.80);
-          font-weight: 800;
+          color: var(--muted2);
+          font-weight: 850;
           letter-spacing: 0.2px;
         }
 
@@ -642,17 +707,24 @@ export default function Page() {
         textarea {
           width: 100%;
           border-radius: 14px;
-          border: 1px solid rgba(255, 255, 255, 0.18);
-          background: rgba(255, 255, 255, 0.06);
+          border: 1px solid var(--border2);
+          background: color-mix(in srgb, var(--panel2) 80%, transparent);
           padding: 12px 12px;
-          color: rgba(255, 255, 255, 0.92);
+          color: var(--text);
           outline: none;
           font-size: 14px;
         }
 
+        input:focus,
+        select:focus,
+        textarea:focus {
+          border-color: rgba(87, 183, 255, 0.55);
+          box-shadow: 0 0 0 4px rgba(87, 183, 255, 0.14);
+        }
+
         input::placeholder,
         textarea::placeholder {
-          color: rgba(255, 255, 255, 0.45);
+          color: color-mix(in srgb, var(--muted2) 65%, transparent);
         }
 
         textarea {
@@ -668,37 +740,55 @@ export default function Page() {
           margin-top: 12px;
         }
 
+        .btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          padding: 11px 14px;
+          border-radius: 14px;
+          border: 1px solid var(--border2);
+          text-decoration: none;
+          font-weight: 900;
+          font-size: 13px;
+          letter-spacing: 0.2px;
+          background: color-mix(in srgb, var(--panel2) 80%, transparent);
+          color: var(--text);
+          cursor: pointer;
+        }
+
+        .btn:hover {
+          border-color: var(--border);
+          background: var(--panel);
+        }
+
+        .btnPrimary {
+          border-color: rgba(87, 183, 255, 0.55);
+          background: linear-gradient(180deg, rgba(87, 183, 255, 0.9), rgba(47, 107, 255, 0.9));
+          color: var(--brandText);
+          box-shadow: 0 10px 28px rgba(47, 107, 255, 0.26);
+        }
+
+        .btnPrimary:hover {
+          filter: brightness(1.04);
+        }
+
         .note {
           font-size: 12px;
-          color: rgba(255, 255, 255, 0.65);
+          color: var(--muted2);
           line-height: 1.6;
         }
 
+        /* Footer */
         .footer {
           padding: 30px 0 44px;
-          border-top: 1px solid rgba(255, 255, 255, 0.10);
+          border-top: 1px solid var(--border2);
           margin-top: 18px;
-          color: rgba(255, 255, 255, 0.65);
+          color: var(--muted2);
           font-size: 13px;
         }
 
-        .tiny {
-          font-size: 12px;
-          color: rgba(255, 255, 255, 0.65);
-          line-height: 1.55;
-        }
-.menuBtn {
-  display: none;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.92);
-  border-radius: 12px;
-  padding: 10px 12px;
-  font-size: 18px;
-  font-weight: 900;
-  cursor: pointer;
-}
-
+        /* Mobile */
         @media (max-width: 980px) {
           .heroGrid {
             grid-template-columns: 1fr;
@@ -718,39 +808,37 @@ export default function Page() {
             grid-template-columns: 1fr;
           }
           .h1 {
-            font-size: 38px;
+            font-size: 36px;
           }
-            .menuBtn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
 
-  .navLinks {
-    position: fixed;
-    top: 64px;
-    left: 14px;
-    right: 14px;
-    display: none;               /* hidden by default */
-    flex-direction: column;
-    gap: 6px;
-    padding: 12px;
-    border-radius: 16px;
-    background: rgba(10, 11, 15, 0.92);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    backdrop-filter: blur(14px);
-    box-shadow: var(--shadow);
-  }
+          .menuBtn {
+            display: inline-flex;
+          }
 
-  .navLinks.open {
-    display: flex;               /* shown when open */
-  }
+          .navLinks {
+            position: fixed;
+            top: 66px;
+            left: 14px;
+            right: 14px;
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            padding: 12px;
+            border-radius: 16px;
+            background: color-mix(in srgb, var(--bg0) 88%, transparent);
+            border: 1px solid var(--border2);
+            backdrop-filter: blur(14px);
+            box-shadow: var(--shadow);
+          }
 
-  .navLinks a {
-    padding: 12px 12px;
-    border-radius: 12px;
-  }
+          .navLinks.open {
+            display: flex;
+          }
 
+          .navLinks a {
+            padding: 12px 12px;
+            border-radius: 12px;
+          }
         }
       `}</style>
 
@@ -767,25 +855,53 @@ export default function Page() {
               </div>
             </div>
 
-           <button
-  className="menuBtn"
-  aria-label="Toggle navigation menu"
-  onClick={() => setMenuOpen((v) => !v)}
->
-  ☰
-</button>
+            <div className="navRight">
+              <button
+                className="iconBtn"
+                type="button"
+                onClick={() => setTheme((t) => (t === "dark" ? "light" : "dark"))}
+                aria-label="Toggle theme"
+                title="Toggle theme"
+              >
+                {theme === "dark" ? "☀️ Light" : "🌙 Dark"}
+              </button>
 
-<nav className={`navLinks ${menuOpen ? "open" : ""}`} aria-label="Primary navigation">
-  <a href="#home" onClick={() => setMenuOpen(false)}>Home</a>
-  <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
-  <a href="#tracks" onClick={() => setMenuOpen(false)}>Tracks</a>
-  <a href="#cfp" onClick={() => setMenuOpen(false)}>CFP</a>
-  <a href="#submission" onClick={() => setMenuOpen(false)}>Submission</a>
-  <a href="#committee" onClick={() => setMenuOpen(false)}>Committee</a>
-  <a href="#registration" onClick={() => setMenuOpen(false)}>Registration</a>
-  <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
-</nav>
+              <button
+                className="iconBtn menuBtn"
+                type="button"
+                aria-label="Toggle navigation menu"
+                onClick={() => setMenuOpen((v) => !v)}
+              >
+                ☰ Menu
+              </button>
 
+              <nav className={`navLinks ${menuOpen ? "open" : ""}`} aria-label="Primary navigation">
+                <a href="#home" onClick={closeMenu}>
+                  Home
+                </a>
+                <a href="#about" onClick={closeMenu}>
+                  About
+                </a>
+                <a href="#tracks" onClick={closeMenu}>
+                  Tracks
+                </a>
+                <a href="#cfp" onClick={closeMenu}>
+                  CFP
+                </a>
+                <a href="#submission" onClick={closeMenu}>
+                  Submission
+                </a>
+                <a href="#committee" onClick={closeMenu}>
+                  Committee
+                </a>
+                <a href="#registration" onClick={closeMenu}>
+                  Registration
+                </a>
+                <a href="#contact" onClick={closeMenu}>
+                  Contact
+                </a>
+              </nav>
+            </div>
           </div>
         </div>
       </header>
@@ -796,55 +912,35 @@ export default function Page() {
           <div className="heroGrid">
             <div className="panel">
               <div className="panelInner">
-                {/* <div className="heroBadgeRow">
-                  <span className="badge">
-                    <span className="badgeDot" />
-                    Proceedings: <strong>{meta.proceedings}</strong>
-                  </span>
-                  <span className="badge">
-                    <span className="badgeDot" />
-                    {meta.dates}
-                  </span>
-                  <span className="badge">
-                    <span className="badgeDot" />
-                    San Antonio, Texas United States
-                  </span>
-                </div> */}
+                <span className="eyebrow">
+                  <span className="dot" aria-hidden="true" />
+                  {meta.dates} • {meta.cityLine}
+                </span>
 
                 <h1 className="h1">{meta.fullName}</h1>
 
-                <p className="lead">
-                  <strong>{meta.acronym}</strong> is a premier interdisciplinary platform at the convergence of{" "}
-                  <strong>quantum computing</strong>, <strong>AI-driven defense</strong>, and <strong>systemic trust</strong>.
-                </p>
-
-                {/* <div className="pills" aria-label="Conference highlights">
-                  <span className="pill">UTSA Downtown Campus</span>
-                  <span className="pill">CCIS proceedings (planned)</span>
-                  <span className="pill">Double-blind review</span>
-                  <span className="pill">Minimum 3 reviews</span>
-                  <span className="pill">Quantum-safe + Trusted AI</span>
-                </div> */}
-
-                {/* <div className="ctaRow">
-                  <a className="btn btnPrimary" href={meta.ctas.cfp}>
-                    View Call for Papers
-                  </a>
-                  <a className="btn" href={meta.ctas.submission}>
-                    Submission (Meteor)
-                  </a>
-                  <a className="btn" href={meta.ctas.registration}>
-                    Registration
-                  </a>
-                  <a className="btn" href={meta.ctas.contact}>
-                    Contact
-                  </a>
-                </div> */}
+                <p className="lead">{meta.theme}</p>
 
                 <div className="divider" />
 
-                <div className="tiny">
-                  <strong>Venue:</strong> {meta.venue} — {meta.address}
+                <div className="kv">
+                  <div className="kvRow">
+                    <span className="kvPill">
+                      <strong>Venue:</strong> UTSA Downtown Campus
+                    </span>
+                    <span className="kvPill">
+                      <strong>Proceedings:</strong> Planning stage
+                    </span>
+                    <span className="kvPill">
+                      <strong>Review:</strong> Double-blind
+                    </span>
+                  </div>
+
+                  <div className="kvRow">
+                    <span className="kvPill">
+                      <strong>Address:</strong> {meta.address}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -869,9 +965,7 @@ export default function Page() {
                   ))}
                 </ul>
                 <div className="divider" />
-                <div className="note">
-                  Final track chairs and keynote speakers will be announced on this page as confirmations are completed.
-                </div>
+                <div className="note">Final track chairs and keynote speakers will be announced as confirmations are completed.</div>
               </div>
             </div>
           </div>
@@ -884,9 +978,7 @@ export default function Page() {
           <div className="sectionHead">
             <div>
               <h2 className="h2">About IC-SQITS 2026</h2>
-              <div className="subline">
-                Securing the post-quantum era while responsibly harnessing AI for resilient, trustworthy systems.
-              </div>
+              <div className="subline">Securing the post-quantum era while responsibly harnessing AI for resilient, trustworthy systems.</div>
             </div>
           </div>
 
@@ -899,8 +991,8 @@ export default function Page() {
 
                 <div className="kpiGrid" aria-label="Conference facts">
                   <div className="kpi">
-                    <p className="kpiVal"> Proceedings</p>
-                    <p className="kpiLabel">Proceedings in planning stage</p>
+                    <p className="kpiVal">Proceedings</p>
+                    <p className="kpiLabel">{meta.proceedings}</p>
                   </div>
                   <div className="kpi">
                     <p className="kpiVal">3+</p>
@@ -920,13 +1012,10 @@ export default function Page() {
                 <ul className="list">
                   <li>Quantum algorithms threaten legacy public-key cryptography and long-term confidentiality.</li>
                   <li>AI accelerates both defense and adversarial capabilities (automation, scale, sophistication).</li>
-                  <li>Trusted systems must withstand algorithmic disruption, supply chain risks, and policy constraints.</li>
+                  <li>Trusted systems must withstand disruption, supply chain risks, and policy constraints.</li>
                 </ul>
                 <div className="divider" />
-                <div className="note">
-                  IC-SQITS bridges standards, engineering practice, and research to provide deployment-ready security
-                  pathways.
-                </div>
+                <div className="note">IC-SQITS bridges standards, engineering practice, and research to support deployment-ready pathways.</div>
               </div>
             </div>
           </div>
@@ -970,9 +1059,7 @@ export default function Page() {
                   ))}
                 </div>
                 <div className="divider" />
-                <div className="note">
-                  Special tracks support focused communities and timely themes. Track chair announcements coming soon.
-                </div>
+                <div className="note">Special tracks support focused communities and timely themes. Track chair announcements coming soon.</div>
               </div>
             </div>
           </div>
@@ -986,7 +1073,7 @@ export default function Page() {
             <div>
               <h2 className="h2">Call for Papers (CFP)</h2>
               <div className="subline">
-                Proceedings: <strong>{meta.proceedings}</strong>. Please follow given formatting requirements and anonymization rules.
+                Proceedings: <strong>{meta.proceedings}</strong>. Please follow the stated formatting requirements and anonymization rules.
               </div>
             </div>
           </div>
@@ -1014,7 +1101,7 @@ export default function Page() {
 
             <div className="col5">
               <div className="card">
-                <div className="cardTitle">Important dates (official)</div>
+                <div className="cardTitle">Important dates</div>
                 <ul className="list">
                   {dates.map((d) => (
                     <li key={d.k}>
@@ -1023,9 +1110,7 @@ export default function Page() {
                   ))}
                 </ul>
                 <div className="divider" />
-                <div className="note">
-                  Dates may be adjusted slightly based on proceedings timelines. Updates will be published here.
-                </div>
+                <div className="note">Dates may be adjusted slightly based on proceedings timelines. Updates will be published here.</div>
               </div>
             </div>
           </div>
@@ -1039,7 +1124,7 @@ export default function Page() {
             <div>
               <h2 className="h2">Submission</h2>
               <div className="subline">
-                Submissions will be handled via the <strong>Meteor</strong>. Details coming soon.
+                Submissions will be handled via <strong>Meteor</strong>. Details coming soon.
               </div>
             </div>
           </div>
@@ -1049,14 +1134,12 @@ export default function Page() {
               <div className="card">
                 <div className="cardTitle">How to submit</div>
                 <ul className="list">
-                  <li>Prepare an anonymized manuscript compliant with given formatting instructions (link to be posted).</li>
+                  <li>Prepare an anonymized manuscript compliant with the final formatting instructions (link to be posted).</li>
                   <li>Submit via Meteor. The submission portal link will appear here once available.</li>
                   <li>Ensure all figures, appendices, and supplementary materials are anonymized.</li>
                 </ul>
                 <div className="divider" />
-                <div className="note">
-                  If you need assistance with anonymization or templates, use the Contact form below.
-                </div>
+                <div className="note">If you need assistance with anonymization or templates, use the Contact form below.</div>
               </div>
             </div>
 
@@ -1067,9 +1150,7 @@ export default function Page() {
                   Meteor portal: <strong>Coming Soon</strong>
                 </p>
                 <div className="divider" />
-                <div className="note">
-                  We will post: portal link, paper template, author instructions, and policy checklist.
-                </div>
+                <div className="note">We will post: portal link, paper template, author instructions, and policy checklist.</div>
               </div>
             </div>
           </div>
@@ -1140,7 +1221,9 @@ export default function Page() {
               <div className="card">
                 <div className="cardTitle">Status</div>
                 <ul className="list">
-                  <li>Registration: <strong>Coming Soon</strong></li>
+                  <li>
+                    Registration: <strong>Coming Soon</strong>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -1165,9 +1248,7 @@ export default function Page() {
           <div className="sectionHead">
             <div>
               <h2 className="h2">Contact</h2>
-              <div className="subline">
-                Fill the following form.
-              </div>
+              <div className="subline">Fill the following form.</div>
             </div>
           </div>
 
@@ -1180,13 +1261,7 @@ export default function Page() {
                   <div className="formGrid">
                     <div className="field">
                       <label htmlFor="name">Full name</label>
-                      <input
-                        id="name"
-                        value={form.name}
-                        onChange={onChange("name")}
-                        placeholder="Your name"
-                        autoComplete="name"
-                      />
+                      <input id="name" value={form.name} onChange={onChange("name")} placeholder="Your name" autoComplete="name" />
                     </div>
 
                     <div className="field">
@@ -1214,12 +1289,7 @@ export default function Page() {
 
                     <div className="field" style={{ gridColumn: "1 / -1" }}>
                       <label htmlFor="message">Message</label>
-                      <textarea
-                        id="message"
-                        value={form.message}
-                        onChange={onChange("message")}
-                        placeholder="Write your message…"
-                      />
+                      <textarea id="message" value={form.message} onChange={onChange("message")} placeholder="Write your message…" />
                     </div>
                   </div>
 
@@ -1238,19 +1308,13 @@ export default function Page() {
                         : "No data is stored on the website."}
                     </span>
                   </div>
-
-                  {/* <div className="divider" />
-                   <div className="note">
-                    Note: This form uses <strong>mailto</strong> (no server). If you prefer a true web submission (without
-                    email client), we can add a free form backend later (Formspree / Google Forms / Vercel Functions).
-                  </div> */}
                 </form>
               </div>
             </div>
 
-            {/* <div className="col5">
+            <div className="col5">
               <div className="card">
-                <div className="cardTitle">Conference details</div>
+                <div className="cardTitle">Quick info</div>
                 <ul className="list">
                   <li>
                     <strong>Conference:</strong> {meta.acronym}
@@ -1259,61 +1323,22 @@ export default function Page() {
                     <strong>Dates:</strong> {meta.dates}
                   </li>
                   <li>
-                    <strong>Proceedings:</strong> {meta.proceedings}
-                  </li>
-                  <li>
-                    <strong>Venue:</strong> UTSA Downtown
-                  </li>
-                  <li>
-                    <strong>Address:</strong> {meta.address}
+                    <strong>Venue:</strong> {meta.venue}
                   </li>
                 </ul>
                 <div className="divider" />
-                 <div className="note">
+                <div className="note">
                   For urgent matters, email: <strong>{EMAIL_TO}</strong>
-                </div> 
+                </div>
               </div>
-            </div> */}
-          </div> 
-        </div> 
+            </div>
+          </div>
+        </div>
       </section>
 
       <footer className="footer">
-        <div className="container">
-          <div>
-            © 2026 IC-SQITS. All rights reserved.
-          </div>
-          {/* <div className="tiny" style={{ marginTop: 8 }}>
-            Built on Next.js and deployed on Vercel.
-          </div> */}
-        </div>
+        <div className="container">© 2026 IC-SQITS. All rights reserved.</div>
       </footer>
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
