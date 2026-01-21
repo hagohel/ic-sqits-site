@@ -106,7 +106,6 @@ export default function Page() {
         "Dr. Himanshu Upadhyay, Florida International University, United States",
         "Dr. Biswajeet Pandey, Dr. A. P. J. Abdul Kalam Technical University, India",
         "Dr. Suresh Kumar Peddoju, University of Houston, United States",
-        "Dr. Shekhar Bhansali, Vanderbilt University, United States",
       ],
       tpc: [
         "Dr. Weiwei Jiang, Beijing University of Posts and Telecommunications, China",
@@ -1342,3 +1341,4 @@ export default function Page() {
     </div>
   );
 }
+
