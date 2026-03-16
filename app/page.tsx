@@ -104,7 +104,7 @@ export default function Page() {
 
   const organizers = useMemo(
     () => ({
-      Chairs: [
+      chairs: [
         "Dr. Hardik Gohel, Texas A&M University–Victoria, United States",
         "Dr. Biswajeet Pandey, Dr. A. P. J. Abdul Kalam Technical University, India",
         "Dr. Yun Wan, University of Houston-Downtown, United States",
