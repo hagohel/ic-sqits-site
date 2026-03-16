@@ -1,15 +1,53 @@
-export const metadata = {
-  title: "IC-SQITS 2026 — Secure Quantum Intelligence & Trusted Systems",
-  description:
-    "International Conference on Secure Quantum Intelligence and Trusted Systems (IC-SQITS 2026), San Antonio, TX, Dec 10–11, 2026.",
-};
+import type { Metadata } from 'next'
+import { Geist, Geist_Mono } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
+import { ThemeProvider } from '@/components/theme-provider'
+import './globals.css'
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+const _geist = Geist({ subsets: ["latin"] });
+const _geistMono = Geist_Mono({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: 'IC-SQITS 2026 — Secure Quantum Intelligence & Trusted Systems',
+  description: 'International Conference on Secure Quantum Intelligence and Trusted Systems. December 10-11, 2026, San Antonio, Texas. Published in Springer Nature Proceedings.',
+  generator: 'v0.app',
+  icons: {
+    icon: [
+      {
+        url: '/icon-light-32x32.png',
+        media: '(prefers-color-scheme: light)',
+      },
+      {
+        url: '/icon-dark-32x32.png',
+        media: '(prefers-color-scheme: dark)',
+      },
+      {
+        url: '/icon.svg',
+        type: 'image/svg+xml',
+      },
+    ],
+    apple: '/apple-icon.png',
+  },
+}
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
   return (
-    <html lang="en">
-      <body style={{ margin: 0, fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif" }}>
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <body className="font-sans antialiased">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+        <Analytics />
       </body>
     </html>
-  );
+  )
 }
