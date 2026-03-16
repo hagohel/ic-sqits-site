@@ -32,13 +32,13 @@ export function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
+
     const subjectText = subjectOptions.find(s => s.value === formData.subject)?.label || "General Inquiry"
     const mailtoLink = `mailto:hagohel@gmail.com?subject=${encodeURIComponent(`[IC-SQITS 2026] ${subjectText}`)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`)}`
-    
+
     await new Promise((resolve) => setTimeout(resolve, 500))
     window.location.href = mailtoLink
-    
+
     setIsSubmitting(false)
     setSubmitted(true)
   }
@@ -72,10 +72,10 @@ export function ContactSection() {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="name" className="text-foreground">Full Name</Label>
-                    <Input 
-                      id="name" 
-                      placeholder="Your name" 
-                      required 
+                    <Input
+                      id="name"
+                      placeholder="Your name"
+                      required
                       className="bg-input border-border"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -83,11 +83,11 @@ export function ContactSection() {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="email" className="text-foreground">Email</Label>
-                    <Input 
-                      id="email" 
-                      type="email" 
-                      placeholder="you@example.com" 
-                      required 
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="you@example.com"
+                      required
                       className="bg-input border-border"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -95,7 +95,7 @@ export function ContactSection() {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="subject" className="text-foreground">Subject</Label>
-                    <Select 
+                    <Select
                       required
                       value={formData.subject}
                       onValueChange={(value) => setFormData({ ...formData, subject: value })}
@@ -175,8 +175,8 @@ export function ContactSection() {
                   <Mail className="h-5 w-5 text-primary shrink-0" />
                   <div>
                     <span className="text-muted-foreground text-sm">Urgent Contact</span>
-                    <a href="mailto:hagohel@gmail.com" className="font-medium text-primary hover:underline block">
-                      hagohel@gmail.com
+                    <a href="mailto:chair@ic-sqits.net" className="font-medium text-primary hover:underline block">
+                      chair@ic-sqits.net
                     </a>
                   </div>
                 </div>
