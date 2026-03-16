@@ -175,7 +175,7 @@ export function ContactSection() {
                   <Mail className="h-5 w-5 text-primary shrink-0" />
                   <div>
                     <span className="text-muted-foreground text-sm">Please Note </span>
-                    <a className="font-medium text-primary hover:underline block">
+                    <a className="font-medium text-primary hover">
                       Submit contact only for urgent inquiries. Most of the information will be provided on website, once available
                     </a>
                   </div>
