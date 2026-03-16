@@ -46,6 +46,13 @@ export default function Page() {
     () => ({
       acronym: "IC-SQITS 2026",
       fullName: "International Conference on Secure Quantum Intelligence and Trusted Systems",
+      <div className="springerBadge">
+  <img src="/Springer_Nature.png" alt="Springer Nature" />
+  <div>
+    Accepted papers will be published in <strong>Springer Nature</strong><br/>
+    Advances in Computer Science Applications and Research (ACSAR)
+  </div>
+</div>
       proceedings: "Accepted papers will be published in Springer Nature",
       dates: "10–11 December 2026",
       venue: "University of Texas at San Antonio (UTSA) — Downtown Campus",
