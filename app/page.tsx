@@ -26,11 +26,10 @@ export default function Page() {
 
   const [status, setStatus] = useState<"idle" | "ready" | "error">("idle");
 
-  // Apply theme + persist
   useEffect(() => {
-    const saved = (typeof window !== "undefined" ? window.localStorage.getItem("ic_sqits_theme") : null) as
-      | ThemeMode
-      | null;
+    const saved = (typeof window !== "undefined"
+      ? window.localStorage.getItem("ic_sqits_theme")
+      : null) as ThemeMode | null;
 
     const initial: ThemeMode = saved ?? "dark";
     setTheme(initial);
@@ -39,21 +38,19 @@ export default function Page() {
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
-    if (typeof window !== "undefined") window.localStorage.setItem("ic_sqits_theme", theme);
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("ic_sqits_theme", theme);
+    }
   }, [theme]);
 
   const meta = useMemo(
     () => ({
       acronym: "IC-SQITS 2026",
-      fullName: "International Conference on Secure Quantum Intelligence and Trusted Systems",
-      <div className="springerBadge">
-  <img src="/Springer_Nature.png" alt="Springer Nature" />
-  <div>
-    Accepted papers will be published in <strong>Springer Nature</strong><br/>
-    Advances in Computer Science Applications and Research (ACSAR)
-  </div>
-</div>
+      fullName:
+        "International Conference on Secure Quantum Intelligence and Trusted Systems",
       proceedings: "Accepted papers will be published in Springer Nature",
+      proceedingsSeries:
+        "Advances in Computer Science Applications and Research (ACSAR)",
       dates: "10–11 December 2026",
       venue: "University of Texas at San Antonio (UTSA) — Downtown Campus",
       address: "501 W César E Chávez Blvd, San Antonio, TX 78207",
@@ -67,7 +64,10 @@ export default function Page() {
   const dates = useMemo(
     () => [
       { k: "Paper submission", v: "May 15, 2026" },
-      { k: "First 3 double-blind reviews due", v: "July 15, 2026" },
+      {
+        k: "First 3 double-blind reviews due",
+        v: "July 15, 2026",
+      },
       { k: "Revised paper due", v: "August 30, 2026" },
       { k: "Notification of acceptance", v: "October 1, 2026" },
       { k: "Camera-ready paper due", v: "November 10, 2026" },
@@ -142,7 +142,7 @@ export default function Page() {
       {
         title: "Double-blind review",
         body:
-          "IC-SQITS uses a strict double-blind process. Authors must remove identifying information from manuscripts and supplementary files (including metadata where applicable).",
+          "IC-SQITS uses a strict double-blind process. Authors must remove identifying information from manuscripts and supplementary files, including metadata where applicable.",
       },
       {
         title: "Minimum of three expert reviews",
@@ -155,9 +155,9 @@ export default function Page() {
           "Based on reviewer feedback, authors may be invited to submit a revised manuscript by Aug 30, 2026. The TPC evaluates revisions for final decisions.",
       },
       {
-        title: "Originality & overlap policy",
+        title: "Originality and overlap policy",
         body:
-          "Submissions must be original, unpublished, and not under review elsewhere. Substantial overlap (including self-plagiarism) may result in desk rejection.",
+          "Submissions must be original, unpublished, and not under review elsewhere. Substantial overlap, including self-plagiarism, may result in desk rejection.",
       },
       {
         title: "Conflict of interest handling",
@@ -175,7 +175,11 @@ export default function Page() {
 
   const onChange =
     (key: keyof ContactForm) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    (
+      e: React.ChangeEvent<
+        HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+      >
+    ) => {
       const value = e.target.value;
       setForm((p) => ({ ...p, [key]: value }));
       setStatus("idle");
@@ -184,8 +188,12 @@ export default function Page() {
   const validate = (): { ok: boolean; msg?: string } => {
     if (!form.name.trim()) return { ok: false, msg: "Please enter your name." };
     if (!form.email.trim()) return { ok: false, msg: "Please enter your email." };
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) return { ok: false, msg: "Please enter a valid email." };
-    if (!form.message.trim()) return { ok: false, msg: "Please write a short message." };
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
+      return { ok: false, msg: "Please enter a valid email." };
+    }
+    if (!form.message.trim()) {
+      return { ok: false, msg: "Please write a short message." };
+    }
     return { ok: true };
   };
 
@@ -207,10 +215,15 @@ export default function Page() {
       "",
       form.message,
       "",
-      `Sent from: ${typeof window !== "undefined" ? window.location.href : "IC-SQITS Website"}`,
+      `Sent from: ${
+        typeof window !== "undefined" ? window.location.href : "IC-SQITS Website"
+      }`,
     ].join("\n");
 
-    const mailto = `mailto:${encodeURIComponent(EMAIL_TO)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const mailto = `mailto:${encodeURIComponent(
+      EMAIL_TO
+    )}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
     setStatus("ready");
     window.location.href = mailto;
   };
@@ -221,20 +234,17 @@ export default function Page() {
     <div>
       <style jsx global>{`
         :root {
-          /* Base */
           --max: 1140px;
           --radius: 18px;
           --radius2: 14px;
           --shadow: 0 18px 60px rgba(0, 0, 0, 0.22);
           --shadow2: 0 12px 34px rgba(0, 0, 0, 0.16);
 
-          /* Blue brand */
           --brand: #2f6bff;
           --brand2: #57b7ff;
           --brand3: #6c5cff;
           --brandText: rgba(255, 255, 255, 0.98);
 
-          /* Theme tokens (dark default) */
           --bg0: #070a14;
           --bg1: #0b1022;
           --panel: rgba(255, 255, 255, 0.06);
@@ -243,8 +253,7 @@ export default function Page() {
           --border2: rgba(255, 255, 255, 0.09);
           --text: rgba(255, 255, 255, 0.94);
           --muted: rgba(255, 255, 255, 0.74);
-          --muted2: rgba(255, 255, 255, 0.60);
-
+          --muted2: rgba(255, 255, 255, 0.6);
           --focus: rgba(87, 183, 255, 0.35);
         }
 
@@ -252,15 +261,14 @@ export default function Page() {
           --bg0: #f6f9ff;
           --bg1: #eef4ff;
           --panel: rgba(255, 255, 255, 0.75);
-          --panel2: rgba(255, 255, 255, 0.60);
+          --panel2: rgba(255, 255, 255, 0.6);
           --border: rgba(17, 24, 39, 0.12);
           --border2: rgba(17, 24, 39, 0.08);
           --text: rgba(17, 24, 39, 0.94);
           --muted: rgba(17, 24, 39, 0.74);
-          --muted2: rgba(17, 24, 39, 0.60);
-
+          --muted2: rgba(17, 24, 39, 0.6);
           --shadow: 0 18px 60px rgba(17, 24, 39, 0.12);
-          --shadow2: 0 12px 34px rgba(17, 24, 39, 0.10);
+          --shadow2: 0 12px 34px rgba(17, 24, 39, 0.1);
         }
 
         html,
@@ -268,12 +276,24 @@ export default function Page() {
           padding: 0;
           margin: 0;
           color: var(--text);
-          font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
-            "Segoe UI Emoji";
+          font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+            Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
           background:
-            radial-gradient(1000px 700px at 14% -10%, rgba(87, 183, 255, 0.35), transparent 55%),
-            radial-gradient(900px 650px at 94% 0%, rgba(47, 107, 255, 0.22), transparent 55%),
-            radial-gradient(800px 600px at 55% 120%, rgba(108, 92, 255, 0.18), transparent 55%),
+            radial-gradient(
+              1000px 700px at 14% -10%,
+              rgba(87, 183, 255, 0.35),
+              transparent 55%
+            ),
+            radial-gradient(
+              900px 650px at 94% 0%,
+              rgba(47, 107, 255, 0.22),
+              transparent 55%
+            ),
+            radial-gradient(
+              800px 600px at 55% 120%,
+              rgba(108, 92, 255, 0.18),
+              transparent 55%
+            ),
             linear-gradient(180deg, var(--bg0), var(--bg1));
         }
 
@@ -284,6 +304,11 @@ export default function Page() {
         a {
           color: inherit;
           text-decoration: none;
+        }
+
+        img {
+          max-width: 100%;
+          display: block;
         }
 
         :focus-visible {
@@ -298,14 +323,17 @@ export default function Page() {
           padding: 0 20px;
         }
 
-        /* Top accent */
         .topline {
           height: 3px;
-          background: linear-gradient(90deg, var(--brand), var(--brand2), var(--brand3));
+          background: linear-gradient(
+            90deg,
+            var(--brand),
+            var(--brand2),
+            var(--brand3)
+          );
           opacity: 0.95;
         }
 
-        /* Nav */
         .nav {
           position: sticky;
           top: 0;
@@ -334,7 +362,11 @@ export default function Page() {
           width: 34px;
           height: 34px;
           border-radius: 12px;
-          background: radial-gradient(14px 14px at 30% 30%, rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.10));
+          background: radial-gradient(
+            14px 14px at 30% 30%,
+            rgba(255, 255, 255, 0.9),
+            rgba(255, 255, 255, 0.1)
+          );
           border: 1px solid var(--border);
           box-shadow: var(--shadow2);
         }
@@ -408,7 +440,6 @@ export default function Page() {
           display: none;
         }
 
-        /* Hero */
         .hero {
           padding: 44px 0 22px;
         }
@@ -433,7 +464,11 @@ export default function Page() {
           content: "";
           position: absolute;
           inset: -2px;
-          background: radial-gradient(500px 240px at 22% 0%, rgba(87, 183, 255, 0.22), transparent 60%);
+          background: radial-gradient(
+            500px 240px at 22% 0%,
+            rgba(87, 183, 255, 0.22),
+            transparent 60%
+          );
           pointer-events: none;
         }
 
@@ -469,6 +504,39 @@ export default function Page() {
           font-size: 46px;
           line-height: 1.06;
           letter-spacing: -0.9px;
+        }
+
+        .springerBadge {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          margin: 14px 0 18px 0;
+          padding: 12px 16px;
+          border-radius: 14px;
+          border: 1px solid var(--border2);
+          background: color-mix(in srgb, var(--panel2) 80%, transparent);
+          box-shadow: var(--shadow2);
+        }
+
+        .springerBadge img {
+          height: 40px;
+          width: auto;
+          object-fit: contain;
+          flex: 0 0 auto;
+        }
+
+        .springerLine1 {
+          font-size: 13px;
+          font-weight: 800;
+          color: var(--text);
+          line-height: 1.5;
+        }
+
+        .springerLine2 {
+          font-size: 13px;
+          font-weight: 700;
+          color: var(--muted);
+          line-height: 1.5;
         }
 
         .lead {
@@ -541,7 +609,6 @@ export default function Page() {
           line-height: 1.75;
         }
 
-        /* Sections */
         .section {
           padding: 26px 0;
         }
@@ -576,12 +643,15 @@ export default function Page() {
         .col6 {
           grid-column: span 6;
         }
+
         .col7 {
           grid-column: span 7;
         }
+
         .col5 {
           grid-column: span 5;
         }
+
         .col12 {
           grid-column: span 12;
         }
@@ -688,7 +758,6 @@ export default function Page() {
           color: var(--muted);
         }
 
-        /* Form */
         .formGrid {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -770,7 +839,11 @@ export default function Page() {
 
         .btnPrimary {
           border-color: rgba(87, 183, 255, 0.55);
-          background: linear-gradient(180deg, rgba(87, 183, 255, 0.9), rgba(47, 107, 255, 0.9));
+          background: linear-gradient(
+            180deg,
+            rgba(87, 183, 255, 0.9),
+            rgba(47, 107, 255, 0.9)
+          );
           color: var(--brandText);
           box-shadow: 0 10px 28px rgba(47, 107, 255, 0.26);
         }
@@ -785,7 +858,6 @@ export default function Page() {
           line-height: 1.6;
         }
 
-        /* Footer */
         .footer {
           padding: 30px 0 44px;
           border-top: 1px solid var(--border2);
@@ -794,29 +866,7 @@ export default function Page() {
           font-size: 13px;
         }
 
-        /* Mobile */
-        @media (max-width: 980px) {
-          .heroGrid {
-            grid-template-columns: 1fr;
-          }
-          .kpiGrid {
-            grid-template-columns: 1fr;
-          }
-          .topicGrid {
-            grid-template-columns: 1fr;
-          }
-          .col6,
-          .col7,
-          .col5 {
-            grid-column: span 12;
-          }
-          .formGrid {
-            grid-template-columns: 1fr;
-          }
-          .h1 {
-            font-size: 36px;
-          }
-
+        @media (max-width: 1200px) {
           .menuBtn {
             display: inline-flex;
           }
@@ -845,6 +895,48 @@ export default function Page() {
             padding: 12px 12px;
             border-radius: 12px;
           }
+
+          .brandSub {
+            font-size: 11px;
+            line-height: 1.35;
+            max-width: 240px;
+          }
+        }
+
+        @media (max-width: 980px) {
+          .heroGrid {
+            grid-template-columns: 1fr;
+          }
+
+          .kpiGrid {
+            grid-template-columns: 1fr;
+          }
+
+          .topicGrid {
+            grid-template-columns: 1fr;
+          }
+
+          .col6,
+          .col7,
+          .col5 {
+            grid-column: span 12;
+          }
+
+          .formGrid {
+            grid-template-columns: 1fr;
+          }
+
+          .h1 {
+            font-size: 36px;
+          }
+
+          .springerBadge {
+            align-items: flex-start;
+          }
+
+          .springerBadge img {
+            height: 34px;
+          }
         }
       `}</style>
 
@@ -857,7 +949,7 @@ export default function Page() {
               <div className="mark" aria-hidden="true" />
               <div>
                 <div className="brandTitle">{meta.acronym}</div>
-                <div className="brandSub">{meta.proceedings}</div>
+                <div className="brandSub">Springer Nature • ACSAR</div>
               </div>
             </div>
 
@@ -881,7 +973,10 @@ export default function Page() {
                 ☰ Menu
               </button>
 
-              <nav className={`navLinks ${menuOpen ? "open" : ""}`} aria-label="Primary navigation">
+              <nav
+                className={`navLinks ${menuOpen ? "open" : ""}`}
+                aria-label="Primary navigation"
+              >
                 <a href="#home" onClick={closeMenu}>
                   Home
                 </a>
@@ -912,7 +1007,6 @@ export default function Page() {
         </div>
       </header>
 
-      {/* HERO */}
       <section id="home" className="hero">
         <div className="container">
           <div className="heroGrid">
@@ -925,6 +1019,17 @@ export default function Page() {
 
                 <h1 className="h1">{meta.fullName}</h1>
 
+                <div className="springerBadge">
+                  <img
+                    src="/Springer_Nature.png"
+                    alt="Springer Nature"
+                  />
+                  <div>
+                    <div className="springerLine1">{meta.proceedings}</div>
+                    <div className="springerLine2">{meta.proceedingsSeries}</div>
+                  </div>
+                </div>
+
                 <p className="lead">{meta.theme}</p>
 
                 <div className="divider" />
@@ -935,7 +1040,7 @@ export default function Page() {
                       <strong>Venue:</strong> UTSA Downtown Campus
                     </span>
                     <span className="kvPill">
-                      <strong>Proceedings:</strong> Planning stage
+                      <strong>Series:</strong> ACSAR
                     </span>
                     <span className="kvPill">
                       <strong>Review:</strong> Double-blind
@@ -971,20 +1076,25 @@ export default function Page() {
                   ))}
                 </ul>
                 <div className="divider" />
-                <div className="note">Final track chairs and keynote speakers will be announced as confirmations are completed.</div>
+                <div className="note">
+                  Final track chairs and keynote speakers will be announced as
+                  confirmations are completed.
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ABOUT */}
       <section id="about" className="section">
         <div className="container">
           <div className="sectionHead">
             <div>
               <h2 className="h2">About IC-SQITS 2026</h2>
-              <div className="subline">Securing the post-quantum era while responsibly harnessing AI for resilient, trustworthy systems.</div>
+              <div className="subline">
+                Securing the post-quantum era while responsibly harnessing AI
+                for resilient, trustworthy systems.
+              </div>
             </div>
           </div>
 
@@ -998,15 +1108,21 @@ export default function Page() {
                 <div className="kpiGrid" aria-label="Conference facts">
                   <div className="kpi">
                     <p className="kpiVal">Proceedings</p>
-                    <p className="kpiLabel">{meta.proceedings}</p>
+                    <p className="kpiLabel">
+                      {meta.proceedings} {meta.proceedingsSeries}
+                    </p>
                   </div>
                   <div className="kpi">
                     <p className="kpiVal">3+</p>
-                    <p className="kpiLabel">Minimum independent reviews per paper.</p>
+                    <p className="kpiLabel">
+                      Minimum independent reviews per paper.
+                    </p>
                   </div>
                   <div className="kpi">
                     <p className="kpiVal">2 days</p>
-                    <p className="kpiLabel">Dec 10–11, 2026 at UTSA Downtown, San Antonio.</p>
+                    <p className="kpiLabel">
+                      Dec 10–11, 2026 at UTSA Downtown, San Antonio.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -1016,25 +1132,38 @@ export default function Page() {
               <div className="card">
                 <div className="cardTitle">Why this conference now?</div>
                 <ul className="list">
-                  <li>Quantum algorithms threaten legacy public-key cryptography and long-term confidentiality.</li>
-                  <li>AI accelerates both defense and adversarial capabilities (automation, scale, sophistication).</li>
-                  <li>Trusted systems must withstand disruption, supply chain risks, and policy constraints.</li>
+                  <li>
+                    Quantum algorithms threaten legacy public-key cryptography
+                    and long-term confidentiality.
+                  </li>
+                  <li>
+                    AI accelerates both defense and adversarial capabilities,
+                    including automation and scale.
+                  </li>
+                  <li>
+                    Trusted systems must withstand disruption, supply chain
+                    risks, and policy constraints.
+                  </li>
                 </ul>
                 <div className="divider" />
-                <div className="note">IC-SQITS bridges standards, engineering practice, and research to support deployment-ready pathways.</div>
+                <div className="note">
+                  IC-SQITS bridges standards, engineering practice, and research
+                  to support deployment-ready pathways.
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* TRACKS */}
       <section id="tracks" className="section">
         <div className="container">
           <div className="sectionHead">
             <div>
               <h2 className="h2">Technical Tracks & Topics</h2>
-              <div className="subline">We invite original, high-quality submissions (full and short papers).</div>
+              <div className="subline">
+                We invite original, high-quality submissions.
+              </div>
             </div>
           </div>
 
@@ -1056,7 +1185,10 @@ export default function Page() {
             <div className="col5">
               <div className="card">
                 <div className="cardTitle">Special tracks</div>
-                <div className="topicGrid" style={{ gridTemplateColumns: "1fr" }}>
+                <div
+                  className="topicGrid"
+                  style={{ gridTemplateColumns: "1fr" }}
+                >
                   {specialTracks.map((t) => (
                     <div className="chip" key={t}>
                       <span className="chipIcon" aria-hidden="true" />
@@ -1065,21 +1197,24 @@ export default function Page() {
                   ))}
                 </div>
                 <div className="divider" />
-                <div className="note">Special tracks support focused communities and timely themes. Track chair announcements coming soon.</div>
+                <div className="note">
+                  Special tracks support focused communities and timely themes.
+                  Track chair announcements coming soon.
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CFP */}
       <section id="cfp" className="section">
         <div className="container">
           <div className="sectionHead">
             <div>
               <h2 className="h2">Call for Papers (CFP)</h2>
               <div className="subline">
-                Proceedings: <strong>{meta.proceedings}</strong>. Please follow the stated formatting requirements and anonymization rules.
+                Proceedings: <strong>{meta.proceedings}</strong>. Please follow
+                the stated formatting requirements and anonymization rules.
               </div>
             </div>
           </div>
@@ -1087,7 +1222,9 @@ export default function Page() {
           <div className="grid12">
             <div className="col7">
               <div className="card">
-                <div className="cardTitle">Review process & author guidelines</div>
+                <div className="cardTitle">
+                  Review process & author guidelines
+                </div>
                 <div className="guideline">
                   {reviewGuidelines.map((g) => (
                     <div className="guidelineItem" key={g.title}>
@@ -1100,7 +1237,8 @@ export default function Page() {
                 <div className="divider" />
 
                 <div className="note">
-                  <strong>Paper types:</strong> Full papers and short papers. (Page limits and template links will be posted here.)
+                  <strong>Paper types:</strong> Full papers and short papers.
+                  Page limits and template links will be posted here.
                 </div>
               </div>
             </div>
@@ -1116,21 +1254,24 @@ export default function Page() {
                   ))}
                 </ul>
                 <div className="divider" />
-                <div className="note">Dates may be adjusted slightly based on proceedings timelines. Updates will be published here.</div>
+                <div className="note">
+                  Dates may be adjusted slightly based on proceedings timelines.
+                  Updates will be published here.
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SUBMISSION */}
       <section id="submission" className="section">
         <div className="container">
           <div className="sectionHead">
             <div>
               <h2 className="h2">Submission</h2>
               <div className="subline">
-                Submissions will be handled via <strong>Meteor</strong>. Details coming soon.
+                Submissions will be handled via <strong>Meteor</strong>. Details
+                coming soon.
               </div>
             </div>
           </div>
@@ -1140,12 +1281,24 @@ export default function Page() {
               <div className="card">
                 <div className="cardTitle">How to submit</div>
                 <ul className="list">
-                  <li>Prepare an anonymized manuscript compliant with the final formatting instructions (link to be posted).</li>
-                  <li>Submit via Meteor. The submission portal link will appear here once available.</li>
-                  <li>Ensure all figures, appendices, and supplementary materials are anonymized.</li>
+                  <li>
+                    Prepare an anonymized manuscript compliant with the final
+                    formatting instructions.
+                  </li>
+                  <li>
+                    Submit via Meteor. The submission portal link will appear
+                    here once available.
+                  </li>
+                  <li>
+                    Ensure all figures, appendices, and supplementary materials
+                    are anonymized.
+                  </li>
                 </ul>
                 <div className="divider" />
-                <div className="note">If you need assistance with anonymization or templates, use the Contact form below.</div>
+                <div className="note">
+                  If you need assistance with anonymization or templates, use
+                  the Contact form below.
+                </div>
               </div>
             </div>
 
@@ -1156,20 +1309,24 @@ export default function Page() {
                   Meteor portal: <strong>Coming Soon</strong>
                 </p>
                 <div className="divider" />
-                <div className="note">We will post: portal link, paper template, author instructions, and policy checklist.</div>
+                <div className="note">
+                  We will post the portal link, paper template, author
+                  instructions, and policy checklist.
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* COMMITTEE */}
       <section id="committee" className="section">
         <div className="container">
           <div className="sectionHead">
             <div>
               <h2 className="h2">Organizing Committee</h2>
-              <div className="subline">Leadership, program chairs, and technical program committee (TPC).</div>
+              <div className="subline">
+                Leadership, program chairs, and technical program committee.
+              </div>
             </div>
           </div>
 
@@ -1194,13 +1351,18 @@ export default function Page() {
                   ))}
                 </ul>
                 <div className="divider" />
-                <div className="note">Track chairs and additional PC members will be added as confirmations finalize.</div>
+                <div className="note">
+                  Track chairs and additional PC members will be added as
+                  confirmations finalize.
+                </div>
               </div>
             </div>
 
             <div className="col12">
               <div className="card">
-                <div className="cardTitle">Technical Program Committee (TPC)</div>
+                <div className="cardTitle">
+                  Technical Program Committee (TPC)
+                </div>
                 <ul className="peopleList">
                   {organizers.tpc.map((p) => (
                     <li key={p}>{p}</li>
@@ -1212,13 +1374,15 @@ export default function Page() {
         </div>
       </section>
 
-      {/* REGISTRATION */}
       <section id="registration" className="section">
         <div className="container">
           <div className="sectionHead">
             <div>
               <h2 className="h2">Registration</h2>
-              <div className="subline">Registration details and fees will be posted here. Please check back soon.</div>
+              <div className="subline">
+                Registration details and fees will be posted here. Please check
+                back soon.
+              </div>
             </div>
           </div>
 
@@ -1241,14 +1405,16 @@ export default function Page() {
                   Coming soon.
                 </p>
                 <div className="divider" />
-                <div className="note">If you need an invitation letter for visa, contact the organizers using the form below.</div>
+                <div className="note">
+                  If you need an invitation letter for visa, contact the
+                  organizers using the form below.
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CONTACT */}
       <section id="contact" className="section">
         <div className="container">
           <div className="sectionHead">
@@ -1267,7 +1433,13 @@ export default function Page() {
                   <div className="formGrid">
                     <div className="field">
                       <label htmlFor="name">Full name</label>
-                      <input id="name" value={form.name} onChange={onChange("name")} placeholder="Your name" autoComplete="name" />
+                      <input
+                        id="name"
+                        value={form.name}
+                        onChange={onChange("name")}
+                        placeholder="Your name"
+                        autoComplete="name"
+                      />
                     </div>
 
                     <div className="field">
@@ -1281,9 +1453,16 @@ export default function Page() {
                       />
                     </div>
 
-                    <div className="field" style={{ gridColumn: "1 / -1" }}>
+                    <div
+                      className="field"
+                      style={{ gridColumn: "1 / -1" }}
+                    >
                       <label htmlFor="subject">Subject</label>
-                      <select id="subject" value={form.subject} onChange={onChange("subject")}>
+                      <select
+                        id="subject"
+                        value={form.subject}
+                        onChange={onChange("subject")}
+                      >
                         <option>General Inquiry</option>
                         <option>Paper Submission (Meteor)</option>
                         <option>CFP / Review Process</option>
@@ -1293,9 +1472,17 @@ export default function Page() {
                       </select>
                     </div>
 
-                    <div className="field" style={{ gridColumn: "1 / -1" }}>
+                    <div
+                      className="field"
+                      style={{ gridColumn: "1 / -1" }}
+                    >
                       <label htmlFor="message">Message</label>
-                      <textarea id="message" value={form.message} onChange={onChange("message")} placeholder="Write your message…" />
+                      <textarea
+                        id="message"
+                        value={form.message}
+                        onChange={onChange("message")}
+                        placeholder="Write your message…"
+                      />
                     </div>
                   </div>
 
@@ -1348,4 +1535,3 @@ export default function Page() {
     </div>
   );
 }
-
