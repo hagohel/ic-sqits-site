@@ -1328,7 +1328,7 @@ export default function Page() {
           <div className="grid12">
             <div className="col6">
               <div className="card">
-                <div className="cardTitle">Chairs</div>
+                <div className="cardTitle">chairs</div>
                 <ul className="peopleList">
                   {organizers.Chairs.map((p) => (
                     <li key={p}>{p}</li>
