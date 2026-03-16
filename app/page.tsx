@@ -104,15 +104,11 @@ export default function Page() {
 
   const organizers = useMemo(
     () => ({
-      generalChairs: [
+      Chairs: [
         "Dr. Hardik Gohel, Texas A&M University–Victoria, United States",
-        "Dr. Usharani Hareesh Govindarajan, Shanghai Jiao Tong University, China",
-        "Dr. Yun Wan, University of Houston-Downtown, United States",
-      ],
-      programChairs: [
-        "Dr. Himanshu Upadhyay, Florida International University, United States",
         "Dr. Biswajeet Pandey, Dr. A. P. J. Abdul Kalam Technical University, India",
-        "Dr. Suresh Kumar Peddoju, University of Houston, United States",
+        "Dr. Yun Wan, University of Houston-Downtown, United States",
+        "Dr. Himanshu Upadhyay, Florida International University, United States",
       ],
       tpc: [
         "Dr. Weiwei Jiang, Beijing University of Posts and Telecommunications, China",
@@ -1270,8 +1266,7 @@ export default function Page() {
             <div>
               <h2 className="h2">Submission</h2>
               <div className="subline">
-                Submissions will be handled via <strong>Meteor</strong>. Details
-                coming soon.
+               Submit your original manuscript at https://meteor.springer.com/IC-SQITS.
               </div>
             </div>
           </div>
