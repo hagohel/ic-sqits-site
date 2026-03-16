@@ -1328,9 +1328,9 @@ export default function Page() {
           <div className="grid12">
             <div className="col6">
               <div className="card">
-                <div className="cardTitle">General Chairs</div>
+                <div className="cardTitle">Chairs</div>
                 <ul className="peopleList">
-                  {organizers.generalChairs.map((p) => (
+                  {organizers.Chairs.map((p) => (
                     <li key={p}>{p}</li>
                   ))}
                 </ul>
