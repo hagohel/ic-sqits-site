@@ -77,6 +77,7 @@ export function SubmissionSection() {
         </div>
 
         {/* Portal status */}
+        {/* 
         <Card className="bg-card/50 border-border/50">
           <CardContent className="py-8">
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
@@ -97,7 +98,7 @@ export function SubmissionSection() {
               </Button>
             </div>
           </CardContent>
-        </Card>
+        </Card> */}
       </div>
     </section>
   )
