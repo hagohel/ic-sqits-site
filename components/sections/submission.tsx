@@ -75,29 +75,6 @@ export function SubmissionSection() {
             </Card>
           ))}
         </div>
-
-        {/* Portal status */}
-        <Card className="bg-card/50 border-border/50">
-          <CardContent className="py-8">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="text-center md:text-left">
-                <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
-                  <h3 className="text-lg font-semibold text-foreground">Meteor Portal Status</h3>
-                  <Badge className="bg-primary/20 text-primary border-0">Now Open</Badge>
-                </div>
-                <p className="text-muted-foreground max-w-lg">
-                  The submission portal is live. Submit your manuscript via Meteor — Springer Nature&apos;s official submission system.
-                </p>
-              </div>
-              <Button size="lg" className="shrink-0" asChild>
-                <a href="https://meteor.springer.com/IC-SQITS" target="_blank" rel="noopener noreferrer">
-                  Submit via Meteor
-                  <ExternalLink className="ml-2 h-4 w-4" />
-                </a>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
       </div>
     </section>
   )
