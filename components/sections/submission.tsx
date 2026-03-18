@@ -71,12 +71,14 @@ export function SubmissionSection() {
                 <ExternalLink className="ml-2 h-4 w-4" />
               </a>
             </Button>
+            <p className="text-muted-foreground mb-4">
+              Use link meteor.springer.com/IC-SQITS to register and follow the steps.
+            </p>
           </CardContent>
         </Card>
-        <p className="text-center text-muted-foreground mb-12">
+        {/*<p className="text-center text-muted-foreground mb-12">
           Submit your manuscript at meteor.springer.com/IC-SQITS
         </p>
-
         {/* Steps */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           {steps.map((step) => (
