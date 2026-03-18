@@ -57,7 +57,22 @@ export function SubmissionSection() {
             </div>
           </CardContent>
         </Card>
-
+        <Card className="bg-card/50 border-border/50 mb-12">
+          <CardContent className="py-6 text-center">
+            <h3 className="text-lg font-semibold text-foreground mb-2">
+              Help Guide for Authors (Meteor Portal)
+            </h3>
+            <p className="text-muted-foreground mb-4">
+              Step-by-step instructions for submitting your manuscript via the Springer Meteor system.
+            </p>
+            <Button asChild>
+              <a href="/docs/Help Guide for Author.pdf" target="_blank" rel="noopener noreferrer">
+                View Help Guide
+                <ExternalLink className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+          </CardContent>
+        </Card>
         <p className="text-center text-muted-foreground mb-12">
           Submit your manuscript at meteor.springer.com/IC-SQITS
         </p>
