@@ -76,10 +76,9 @@ export function SubmissionSection() {
             </p>
           </CardContent>
         </Card>
-        <p className="text-center text-muted-foreground mb-12">
+        {/*<p className="text-center text-muted-foreground mb-12">
           Submit your manuscript at meteor.springer.com/IC-SQITS
         </p>
-
         {/* Steps */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           {steps.map((step) => (
