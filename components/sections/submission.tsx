@@ -66,7 +66,7 @@ export function SubmissionSection() {
               Step-by-step instructions for submitting your manuscript via the Springer Meteor system.
             </p>
             <Button asChild>
-              <a href="/docs/Help Guide for Author.pdf" target="_blank" rel="noopener noreferrer">
+              <a href="/docs/Help_Guide_for_Author.pdf" target="_blank" rel="noopener noreferrer">
                 View Help Guide
                 <ExternalLink className="ml-2 h-4 w-4" />
               </a>
