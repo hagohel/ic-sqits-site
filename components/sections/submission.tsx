@@ -71,6 +71,9 @@ export function SubmissionSection() {
                 <ExternalLink className="ml-2 h-4 w-4" />
               </a>
             </Button>
+            <p className="text-muted-foreground mb-4">
+              Use link meteor.springer.com/IC-SQITS to register and follow the steps.
+            </p>
           </CardContent>
         </Card>
         <p className="text-center text-muted-foreground mb-12">
