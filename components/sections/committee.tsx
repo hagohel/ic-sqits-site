@@ -4,6 +4,7 @@ const chairs = [
   { name: "Dr. Hardik Gohel", affiliation: "Texas A&M University-Victoria, United States", initial: "G" },
   { name: "Dr. Biswajeet Pandey", affiliation: "Dr. A. P. J. Abdul Kalam Technical University, India", initial: "P" },
   { name: "Dr. Yun Wan", affiliation: "University of Houston-Downtown, United States", initial: "W" },
+  { name: "Dr. Suresh Kumar Peddoju", affiliation: "University of Houston, United States", initial: "W" },
   { name: "Dr. Himanshu Upadhyay", affiliation: "Florida International University, United States", initial: "U" },
 ]
 
