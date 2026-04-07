@@ -11,13 +11,8 @@ export function RegistrationSection() {
         <div className="text-center mb-16">
           <p className="text-sm font-medium text-primary mb-3 tracking-wide uppercase">Attend</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Registration</h2>
-          <Button size="lg" className="shrink-0" asChild>
-            <a href="https://www.zeffy.com/en-US/ticketing/a2ccf819-6597-4e7f-b53d-2d77c8537d57" target="_blank" rel="noopener noreferrer">
-              Registration Link
-              <ExternalLink className="ml-2 h-4 w-4" />
-            </a>
-          </Button>
         </div>
+
         <div className="grid md:grid-cols-2 gap-6">
           <Card className="bg-card/50 border-border/50">
             <CardContent className="pt-6">
@@ -26,10 +21,16 @@ export function RegistrationSection() {
                   <Ticket className="h-6 w-6 text-primary" />
                   <h4 className="text-lg font-semibold text-foreground">Registration</h4>
                 </div>
-                <Badge variant="outline" className="border-primary/30 text-primary">Coming Soon</Badge>
+                <Badge variant="outline" className="border-primary/30 text-primary">Now Open</Badge>
               </div>
               <p className="text-muted-foreground text-sm leading-relaxed">
-                Registration details and fees will be posted here. Please check back soon.
+                Click bellow to get registration details.
+                <Button size="lg" className="shrink-0" asChild>
+                  <a href="https://www.zeffy.com/en-US/ticketing/a2ccf819-6597-4e7f-b53d-2d77c8537d57" target="_blank" rel="noopener noreferrer">
+                    Registration Link
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </a>
+                </Button>
               </p>
             </CardContent>
           </Card>
