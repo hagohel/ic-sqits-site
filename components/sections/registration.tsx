@@ -17,9 +17,7 @@ export function RegistrationSection() {
               <ExternalLink className="ml-2 h-4 w-4" />
             </a>
           </Button>
-
         </div>
-
         <div className="grid md:grid-cols-2 gap-6">
           <Card className="bg-card/50 border-border/50">
             <CardContent className="pt-6">
