@@ -1,6 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Ticket, Plane } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { ExternalLink } from "lucide-react"
 
 export function RegistrationSection() {
   return (
@@ -19,10 +21,16 @@ export function RegistrationSection() {
                   <Ticket className="h-6 w-6 text-primary" />
                   <h4 className="text-lg font-semibold text-foreground">Registration</h4>
                 </div>
-                <Badge variant="outline" className="border-primary/30 text-primary">Coming Soon</Badge>
+                <Badge variant="outline" className="border-primary/30 text-primary">Now Open</Badge>
               </div>
               <p className="text-muted-foreground text-sm leading-relaxed">
-                Registration details and fees will be posted here. Please check back soon.
+                Click bellow to get registration details.
+                <Button size="lg" className="shrink-0" asChild>
+                  <a href="https://www.zeffy.com/en-US/ticketing/a2ccf819-6597-4e7f-b53d-2d77c8537d57" target="_blank" rel="noopener noreferrer">
+                    Registration Link
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </a>
+                </Button>
               </p>
             </CardContent>
           </Card>
