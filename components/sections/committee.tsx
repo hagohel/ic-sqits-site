@@ -2,10 +2,10 @@ import { Card, CardContent } from "@/components/ui/card"
 
 const chairs = [
   { name: "Dr. Hardik Gohel", affiliation: "Texas A&M University-Victoria, United States", initial: "G" },
+  { name: "Dr. Himanshu Upadhyay", affiliation: "Florida International University, United States", initial: "U" },
   { name: "Dr. Biswajeet Pandey", affiliation: "Dr. A. P. J. Abdul Kalam Technical University, India", initial: "P" },
   { name: "Dr. Yun Wan", affiliation: "University of Houston-Downtown, United States", initial: "W" },
   { name: "Dr. Suresh Kumar Peddoju", affiliation: "University of Houston, United States", initial: "S" },
-  { name: "Dr. Himanshu Upadhyay", affiliation: "Florida International University, United States", initial: "U" },
 ]
 
 const tpcMembers = [
@@ -20,6 +20,7 @@ const tpcMembers = [
   { name: "Dr. Laura Aldasheva", affiliation: "Astana IT University, Kazakhstan", initial: "A" },
   { name: "Dr. Nikhil Bhalla", affiliation: "Ulster University, UK", initial: "B" },
   { name: "Dr. Scheila Wesley Martins", affiliation: "University of Roehampton, UK", initial: "M" },
+  { name: "Dr. Jayesh Soni", affiliation: "Florida International University, United States", initial: "J" },
   { name: "Dr. Tarek R. Besold", affiliation: "Sony Inc., Spain", initial: "B" },
   { name: "Dr. Ajeet Kaushik", affiliation: "Florida Polytech, USA", initial: "K" },
   { name: "Dr. Gagan Narang", affiliation: "Università Politecnica delle Marche, Italy", initial: "N" },
