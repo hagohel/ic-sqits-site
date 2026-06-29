@@ -2,11 +2,11 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Calendar } from "lucide-react"
 
 const dates = [
-  { date: "May 15, 2026", event: "Paper Submission Deadline" },
-  { date: "July 15, 2026", event: "First 3 Double-Blind Reviews Due" },
-  { date: "August 30, 2026", event: "Revised Paper Due" },
-  { date: "October 1, 2026", event: "Notification of Acceptance" },
-  { date: "November 10, 2026", event: "Camera-Ready Paper Due" },
+  { date: "September 30, 2026", event: "Paper Submission Deadline" },
+  { date: "October 15, 2026", event: "First 3 Double-Blind Reviews Due" },
+  { date: "October 30, 2026", event: "Revised Paper Due" },
+  { date: "November 5, 2026", event: "Notification of Acceptance" },
+  { date: "November 15, 2026", event: "Camera-Ready Paper Due" },
   { date: "December 10-11, 2026", event: "Conference Days" },
 ]
 
