@@ -52,16 +52,26 @@ export function CommitteeSection() {
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Organizing Committee</h2>
         </div>
 
-        {/* Chairs */}
-        <div className="mb-12">
-          <h3 className="text-lg font-semibold text-foreground mb-6 text-center">Chairs</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {chairs.map((chair) => (
-              <MemberCard key={chair.name} {...chair} />
-            ))}
-          </div>
-        </div>
+{/* Chairs */}
+<div className="mb-12">
+  <h3 className="text-lg font-semibold text-foreground mb-6 text-center">
+    Chairs
+  </h3>
 
+  {/* First row: Hardik & Biswajeet */}
+  <div className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto mb-4">
+    {chairs.slice(0, 2).map((chair) => (
+      <MemberCard key={chair.name} {...chair} />
+    ))}
+  </div>
+
+  {/* Second row: Himanshu, Suresh & Yun */}
+  <div className="grid md:grid-cols-3 gap-4">
+    {chairs.slice(2).map((chair) => (
+      <MemberCard key={chair.name} {...chair} />
+    ))}
+  </div>
+</div>
         {/* TPC Members */}
         <div>
           <h3 className="text-lg font-semibold text-foreground mb-6 text-center">Technical Program Committee</h3>
