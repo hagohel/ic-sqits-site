@@ -34,7 +34,7 @@ export function ContactSection() {
     setIsSubmitting(true)
 
     const subjectText = subjectOptions.find(s => s.value === formData.subject)?.label || "General Inquiry"
-    const mailtoLink = `mailto:hagohel@gmail.com?subject=${encodeURIComponent(`[IC-SQITS 2026] ${subjectText}`)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`)}`
+    const mailtoLink = `mailto:dr.pandey@ieee.org?subject=${encodeURIComponent(`[IC-SQITS 2026] ${subjectText}`)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`)}`
 
     await new Promise((resolve) => setTimeout(resolve, 500))
     window.location.href = mailtoLink
