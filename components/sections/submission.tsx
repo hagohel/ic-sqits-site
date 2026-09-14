@@ -58,25 +58,44 @@ export function SubmissionSection() {
           </CardContent>
         </Card>
         <Card className="bg-card/50 border-border/50 mb-12">
-          <CardContent className="py-6 text-center">
-            <h3 className="text-lg font-semibold text-foreground mb-2">
-              Help Guide for Authors (Meteor Portal)
-            </h3>
-            <p className="text-muted-foreground mb-4">
-              Step-by-step instructions for submitting your manuscript via the Springer Meteor system.
-            </p>
-            <Button asChild>
-              <a href="/docs/Help_Guide_for_Author.pdf" target="_blank" rel="noopener noreferrer">
-                View Help Guide
-                <ExternalLink className="ml-2 h-4 w-4" />
-              </a>
-            </Button>
-            <p className="text-muted-foreground mb-4">
-              Use link meteor.springer.com/IC-SQITS to register and follow the steps.
-            </p>
-          </CardContent>
-        </Card>
-        {/*<p className="text-center text-muted-foreground mb-12">
+  <CardContent className="py-6 text-center">
+    <h3 className="text-lg font-semibold text-foreground mb-2">
+      Author Resources
+    </h3>
+
+    <p className="text-muted-foreground mb-6">
+      Download the paper template and review the step-by-step guide for submitting your manuscript through the Springer Meteor portal.
+    </p>
+
+    <div className="flex flex-col sm:flex-row justify-center gap-4 mb-5">
+
+      {/* Paper Template */}
+      <Button asChild>
+        <a href="/docs/ic-sqits-paper-template.zip" download>
+          <FileText className="mr-2 h-4 w-4" />
+          Download Paper Template
+        </a>
+      </Button>
+
+      {/* Meteor Help Guide */}
+      <Button variant="outline" asChild>
+        <a
+          href="/docs/Help_Guide_for_Author.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View Help Guide
+          <ExternalLink className="ml-2 h-4 w-4" />
+        </a>
+      </Button>
+
+    </div>
+
+    <p className="text-sm text-muted-foreground">
+      Use meteor.springer.com/IC-SQITS to register and follow the submission steps.
+    </p>
+  </CardContent>
+</Card>        {/*<p className="text-center text-muted-foreground mb-12">
           Submit your manuscript at meteor.springer.com/IC-SQITS
         </p>
         {/* Steps */}
