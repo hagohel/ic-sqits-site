@@ -11,7 +11,7 @@ const steps = [
     icon: FileText,
     title: "Prepare Manuscript",
     description: "Prepare an anonymized manuscript compliant with the final formatting instructions. A research paper covers maximum 
-      10 pages in Springer Nature Conference Format of Single Column including introduction, figures, tables and references. Extra page charges is $50.00 USD per page.",
+      10 pages in Springer Nature Conference Format of Single Column including introduction, figures, tables and references.",
   },
   {
     number: "02",
