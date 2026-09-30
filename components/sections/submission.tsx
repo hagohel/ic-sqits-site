@@ -10,8 +10,7 @@ const steps = [
     number: "01",
     icon: FileText,
     title: "Prepare Manuscript",
-    description: "Prepare an anonymized manuscript compliant with the final formatting instructions. A research paper covers maximum 
-      10 pages in Springer Nature Conference Format of Single Column including introduction, figures, tables and references.",
+    description: "Prepare an anonymized manuscript compliant with the final formatting instructions.",
   },
   {
     number: "02",
@@ -46,7 +45,8 @@ export function SubmissionSection() {
                   <Badge className="bg-primary/20 text-primary border-0">Now Open</Badge>
                 </div>
                 <p className="text-muted-foreground max-w-lg">
-                  The submission portal is live. Submit your manuscript via Meteor — Springer Nature&apos;s official submission system.
+                  The submission portal is live. Submit your manuscript via Meteor — Springer Nature&apos;s official submission system. 
+                  A research paper covers maximum 10 pages in Springer Nature Conference Format of Single Column including introduction, figures, tables and references.
                 </p>
               </div>
               <Button size="lg" className="shrink-0" asChild>
