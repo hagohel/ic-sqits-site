@@ -96,7 +96,7 @@ export function CommitteeSection() {
               <MemberCard key={member.name} {...member} />
             ))}
           </div>
-          </div>
+         
           <p className="text-sm text-muted-foreground text-center mt-6">
             Track chairs and additional PC members will be added as confirmations finalize.
           </p>
