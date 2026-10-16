@@ -87,7 +87,7 @@ export function CommitteeSection() {
               <MemberCard key={member.name} {...member} />
             ))}
           </div>
-
+</div>
           {/* Keynote Speaker */}
         <div>
           <h3 className="text-lg font-semibold text-foreground mb-6 text-center">Keynote Spekaer</h3>
@@ -95,6 +95,7 @@ export function CommitteeSection() {
             {keynoteSpeaker.map((member) => (
               <MemberCard key={member.name} {...member} />
             ))}
+          </div>
           </div>
           <p className="text-sm text-muted-foreground text-center mt-6">
             Track chairs and additional PC members will be added as confirmations finalize.
