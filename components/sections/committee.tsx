@@ -29,6 +29,13 @@ const tpcMembers = [
   { name: "Dr. Yu Zhiwen", affiliation: "South China Univ. of Technology, China", initial: "Z" },
 ]
 
+const keynoteSpeaker = [
+  { name: "Mr. Arindam Chakarborty", affiliation: "Visa Inc, USA", initial: "C" },
+  { name: "Mr. Somnath Banerjee", affiliation: "Fellow British Computer Society, UK", initial: "B" },
+  
+]
+
+
 function MemberCard({ name, affiliation, initial }: { name: string; affiliation: string; initial: string }) {
   return (
     <div className="flex items-center gap-3 p-3 rounded-lg bg-secondary/30 hover:bg-secondary/50 transition-colors">
@@ -77,6 +84,15 @@ export function CommitteeSection() {
           <h3 className="text-lg font-semibold text-foreground mb-6 text-center">Technical Program Committee</h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
             {tpcMembers.map((member) => (
+              <MemberCard key={member.name} {...member} />
+            ))}
+          </div>
+
+          {/* Keynote Speaker */}
+        <div>
+          <h3 className="text-lg font-semibold text-foreground mb-6 text-center">Keynote Spekaer</h3>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+            {keynoteSpeaker.map((member) => (
               <MemberCard key={member.name} {...member} />
             ))}
           </div>
